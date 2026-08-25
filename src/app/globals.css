@@ -744,6 +744,87 @@ ol {
   gap: 2rem;
 }
 
+.inner-page { min-height: 70vh; }
+
+.page-intro {
+  display: grid;
+  min-height: min(48rem, calc(100svh - 6.5rem));
+  align-content: space-between;
+  gap: 3rem;
+  padding-block: clamp(4rem, 9vw, 9rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-intro .lead { justify-self: end; }
+.page-intro--copper { color: var(--canvas); }
+
+.case-study__hero {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.75fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 7rem);
+  padding-block: clamp(4rem, 8vw, 8rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.case-study__heading { display: grid; gap: 2rem; }
+.case-study__hero .project-visual { min-height: min(45rem, 68vw); }
+
+.case-meta {
+  display: grid;
+  grid-template-columns: 0.55fr 0.8fr 1.65fr;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-meta > div { padding: 2rem; border-right: 1px solid var(--line); }
+.case-meta > div:first-child { padding-left: 0; }
+.case-meta > div:last-child { border-right: 0; }
+.case-meta > div > p:last-child { margin-top: 1rem; color: var(--canvas-muted); line-height: 1.6; }
+
+.evidence-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-bottom: 1px solid var(--line); }
+.evidence-grid article { display: grid; gap: 1rem; padding: clamp(2rem, 5vw, 5rem); border-right: 1px solid var(--line); }
+.evidence-grid article:last-child { border-right: 0; }
+.evidence-grid strong { color: var(--green); font-family: "Raheem Display", Impact, sans-serif; font-size: clamp(4rem, 10vw, 10rem); line-height: 0.8; }
+.case-study--copper .evidence-grid strong { color: var(--copper); }
+.evidence-grid article > p:last-child { max-width: 24rem; color: var(--canvas-muted); line-height: 1.6; }
+
+.case-sections { border-bottom: 1px solid var(--line); }
+.case-section { display: grid; grid-template-columns: 0.65fr 1.35fr; gap: clamp(3rem, 8vw, 10rem); padding-block: var(--section-gap); border-bottom: 1px solid var(--line); }
+.case-section:last-child { border-bottom: 0; }
+.case-section__label { display: flex; align-items: flex-start; gap: 1rem; }
+.case-section__label span { color: var(--green); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.72rem; }
+.case-study--copper .case-section__label span { color: var(--copper); }
+.case-section__body { display: grid; gap: 1.75rem; }
+.case-section__body h2 { max-width: 14ch; margin-bottom: 1rem; font-family: "Raheem Display", Impact, sans-serif; font-size: clamp(3rem, 6vw, 6rem); letter-spacing: -0.05em; line-height: 0.9; text-transform: uppercase; }
+.case-section__body > p { max-width: 45rem; color: var(--canvas-muted); font-size: 1.08rem; line-height: 1.75; }
+.case-section__body ul { display: grid; max-width: 45rem; border-top: 1px solid var(--line); }
+.case-section__body li { padding: 1.2rem 0 1.2rem 1.5rem; border-bottom: 1px solid var(--line); position: relative; }
+.case-section__body li::before { position: absolute; top: 1.65rem; left: 0; width: 0.35rem; height: 0.35rem; border-radius: 50%; background: var(--green); content: ""; }
+
+.next-project { display: grid; gap: 3rem; padding-block: var(--section-gap); }
+.next-project a { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+.next-project a span { font-family: "Raheem Display", Impact, sans-serif; font-size: clamp(4rem, 12vw, 12rem); letter-spacing: -0.06em; line-height: 0.8; text-transform: uppercase; }
+.next-project .arrow-icon { width: clamp(3rem, 7vw, 7rem); height: auto; color: var(--copper); }
+
+.journal-index { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(3rem, 8vw, 10rem); }
+.journal-index > div:first-child { display: grid; align-content: start; gap: 2rem; }
+.empty-state { display: grid; gap: 2rem; padding: clamp(2rem, 5vw, 5rem); border: 1px solid var(--line); background: var(--ink-soft); }
+.empty-state > span { color: var(--copper); font-family: "Raheem Display", Impact, sans-serif; font-size: clamp(5rem, 12vw, 12rem); letter-spacing: -0.07em; line-height: 0.8; }
+
+.about-block { display: grid; grid-template-columns: 0.55fr 1.45fr; gap: clamp(3rem, 8vw, 10rem); }
+.about-block > div { display: grid; gap: 2.5rem; }
+.about-block--canvas { width: calc(100% + var(--page-pad) * 2); margin-left: calc(var(--page-pad) * -1); padding-inline: var(--page-pad); background: var(--canvas); color: var(--ink); }
+.about-block--canvas .body-copy { color: #5e5b53; }
+
+.contact-grid { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: clamp(3rem, 8vw, 10rem); }
+.contact-grid__intro { display: grid; align-content: start; gap: 2rem; }
+.contact-links { border-top: 1px solid var(--line); }
+.contact-links a { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; padding-block: 2rem; border-bottom: 1px solid var(--line); transition: padding 250ms var(--ease-out); }
+.contact-links a:hover { padding-inline: 1rem; }
+.contact-links span { color: var(--copper); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.72rem; }
+.contact-links strong { font-family: "Raheem Display", Impact, sans-serif; font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -0.04em; line-height: 0.9; text-transform: uppercase; }
+.contact-links .arrow-icon { width: 2rem; height: 2rem; }
+
 .site-footer {
   padding-top: clamp(6rem, 12vw, 11rem);
 }
@@ -847,6 +928,24 @@ ol {
   .dual-section__panel { min-height: 38rem; padding: 2rem 1.25rem; }
   .dual-section__panel:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
   .closing-round__actions { align-items: flex-start; flex-direction: column; }
+  .page-intro { min-height: calc(100svh - 5.25rem); }
+  .page-intro .lead { justify-self: start; }
+  .case-study__hero,
+  .case-meta,
+  .evidence-grid,
+  .case-section,
+  .journal-index,
+  .about-block,
+  .contact-grid { grid-template-columns: 1fr; }
+  .case-study__hero .project-visual { min-height: 25rem; }
+  .case-meta > div,
+  .case-meta > div:first-child { padding: 1.5rem 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .case-meta > div:last-child { border-bottom: 0; }
+  .evidence-grid article { padding-inline: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .evidence-grid article:last-child { border-bottom: 0; }
+  .case-section { gap: 3rem; }
+  .next-project a { align-items: flex-start; flex-direction: column; }
+  .about-block--canvas { width: calc(100% + 2rem); margin-left: -1rem; padding-inline: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
