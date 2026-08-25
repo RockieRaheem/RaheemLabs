@@ -887,12 +887,12 @@ ol {
   .site-header__nav {
     position: fixed;
     z-index: 40;
-    right: 1rem;
+    right: auto;
     bottom: 1rem;
     left: 1rem;
-    width: calc(100vw - 2rem);
+    width: min(calc(100vw - 2rem), 22.375rem);
     min-width: 0;
-    max-width: calc(100vw - 2rem);
+    max-width: 22.375rem;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
