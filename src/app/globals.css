@@ -825,6 +825,14 @@ ol {
 .contact-links strong { font-family: "Raheem Display", Impact, sans-serif; font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -0.04em; line-height: 0.9; text-transform: uppercase; }
 .contact-links .arrow-icon { width: 2rem; height: 2rem; }
 
+.not-found {
+  display: grid;
+  min-height: 70vh;
+  align-content: center;
+  justify-items: start;
+  gap: 2.5rem;
+}
+
 .site-footer {
   padding-top: clamp(6rem, 12vw, 11rem);
 }
