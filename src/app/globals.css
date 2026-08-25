@@ -895,6 +895,8 @@ ol {
   }
 
   .site-header > .button {
+    grid-column: 2;
+    grid-row: 1;
     min-width: auto;
   }
 
@@ -918,6 +920,7 @@ ol {
   }
 
   .hero { min-height: calc(100svh - 5.25rem); }
+  .hero__title { font-size: clamp(2.5rem, 11vw, 4rem); }
   .hero__meta p:last-child { display: none; }
   .hero__footer { align-items: flex-start; flex-direction: column; }
   .hero__stamp { right: 0; bottom: -18%; }
