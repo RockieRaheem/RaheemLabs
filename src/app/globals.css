@@ -1,8 +1,29 @@
+@font-face {
+  font-family: "Raheem Display";
+  src: local("Arial Narrow"), local("Roboto Condensed");
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
-  background: #0c0c0b;
-  color: #f1ecdf;
-  font-family: Arial, Helvetica, sans-serif;
+  --ink: #0c0c0b;
+  --ink-soft: #151512;
+  --canvas: #f1ecdf;
+  --canvas-muted: #aaa69d;
+  --steel: #282824;
+  --line: rgb(241 236 223 / 18%);
+  --copper: #ee6b2f;
+  --copper-bright: #ff8150;
+  --green: #9dbd7d;
+  --page-pad: clamp(1rem, 3vw, 3.5rem);
+  --section-gap: clamp(6rem, 13vw, 12rem);
+  --max-width: 100rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--ink);
+  color: var(--canvas);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+  line-height: 1.5;
 }
 
 * {
@@ -10,35 +31,416 @@
 }
 
 html {
-  background: #0c0c0b;
+  scroll-behavior: smooth;
+  background: var(--ink);
 }
 
 body {
   margin: 0;
+  min-width: 20rem;
   min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(rgb(255 255 255 / 1.4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 1.4%) 1px, transparent 1px),
+    var(--ink);
+  background-size: 4rem 4rem;
 }
 
-main {
-  display: grid;
-  min-height: 100vh;
-  place-content: center;
-  padding: 2rem;
+body::before {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.2rem;
+  background: var(--copper);
+  content: "";
+  pointer-events: none;
+}
+
+::selection {
+  background: var(--copper);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
 }
 
 h1,
-p {
+h2,
+h3,
+p,
+figure,
+blockquote,
+ul,
+ol {
   margin: 0;
 }
 
-h1 {
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 0.15rem solid var(--copper-bright);
+  outline-offset: 0.3rem;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-200%);
+  background: var(--canvas);
+  color: var(--ink);
+  font-weight: 700;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header,
+.site-footer,
+.page-shell {
+  width: min(100%, var(--max-width));
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+
+.site-header {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 6.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__brand {
+  justify-self: start;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.site-header__nav a,
+.site-footer__links a {
+  position: relative;
+}
+
+.site-header__nav a::after,
+.site-footer__links a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.3rem;
+  left: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: currentColor;
+  content: "";
+  transition: transform 300ms var(--ease-out);
+}
+
+.site-header__nav a:hover::after,
+.site-footer__links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.site-header > .button {
+  justify-self: end;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.brand-mark__monogram {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  transform: rotate(-3deg);
+  border: 1px solid var(--canvas);
+  border-radius: 50%;
+  font-family: "Raheem Display", Impact, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: -0.04em;
+}
+
+.brand-mark__name span {
+  color: var(--copper);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 12rem;
+  gap: 2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--canvas);
+  background: transparent;
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    background 250ms var(--ease-out),
+    color 250ms var(--ease-out),
+    transform 250ms var(--ease-out);
+}
+
+.button:hover {
+  transform: translateY(-0.15rem);
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+.button--compact {
+  min-width: 9rem;
+  padding-block: 0.75rem;
+}
+
+.button--copper {
+  border-color: var(--copper);
+  background: var(--copper);
+  color: var(--ink);
+}
+
+.button--copper:hover {
+  border-color: var(--canvas);
+  background: var(--canvas);
+}
+
+.eyebrow,
+.round-label {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.round-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--canvas-muted);
+}
+
+.round-label span {
+  display: grid;
+  width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--canvas);
+}
+
+.round-label--copper {
+  color: var(--copper);
+}
+
+.round-label--green {
+  color: var(--green);
+}
+
+.display {
+  font-family: "Raheem Display", Impact, Haettenschweiler, sans-serif;
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-stretch: condensed;
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.78;
+  text-transform: uppercase;
+}
+
+.display--medium {
+  font-size: clamp(3.5rem, 8vw, 8rem);
+}
+
+.section-title {
   max-width: 12ch;
-  font-size: clamp(3rem, 10vw, 8rem);
+  font-family: "Raheem Display", Impact, sans-serif;
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 34ch;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.body-copy {
+  max-width: 42rem;
+  color: var(--canvas-muted);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.75;
+}
+
+.muted {
+  color: var(--canvas-muted);
+}
+
+.accent {
+  color: var(--copper);
+}
+
+.page-shell {
+  min-height: 70vh;
+}
+
+.section {
+  padding-block: var(--section-gap);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-footer {
+  padding-top: clamp(6rem, 12vw, 11rem);
+}
+
+.site-footer__statement {
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+  font-family: "Raheem Display", Impact, sans-serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
   line-height: 0.88;
   text-transform: uppercase;
 }
 
-p {
-  margin-top: 2rem;
-  color: #aaa69d;
+.site-footer__statement p:last-child {
+  color: var(--copper);
+}
+
+.site-footer__base {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--line);
+  color: var(--canvas-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-footer__base > p {
+  text-align: center;
+}
+
+.site-footer__links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+@media (max-width: 48rem) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    min-height: 5.25rem;
+  }
+
+  .site-header__nav {
+    position: fixed;
+    z-index: 40;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    justify-content: space-around;
+    gap: 0.5rem;
+    padding: 0.9rem 0.5rem;
+    border: 1px solid var(--line);
+    background: rgb(12 12 11 / 92%);
+    backdrop-filter: blur(1rem);
+  }
+
+  .site-header > .button {
+    min-width: auto;
+  }
+
+  .site-header > .button span,
+  .brand-mark__name {
+    display: none;
+  }
+
+  .site-footer {
+    padding-bottom: 5rem;
+  }
+
+  .site-footer__base {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-footer__base > p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
