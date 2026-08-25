@@ -890,6 +890,9 @@ ol {
     right: 1rem;
     bottom: 1rem;
     left: 1rem;
+    width: calc(100vw - 2rem);
+    min-width: 0;
+    max-width: calc(100vw - 2rem);
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
@@ -899,6 +902,7 @@ ol {
     backdrop-filter: blur(1rem);
     font-size: 0.64rem;
     text-align: center;
+    overflow: hidden;
   }
 
   .site-header > .button {
