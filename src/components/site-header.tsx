@@ -5,6 +5,7 @@ const navigation = [
   { href: "/work", label: "Work" },
   { href: "/raheemlabs", label: "RaheemLabs" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact", mobileOnly: true },
 ];
 
 export function SiteHeader() {
@@ -16,7 +17,11 @@ export function SiteHeader() {
 
       <nav className="site-header__nav" aria-label="Primary navigation">
         {navigation.map((item) => (
-          <Link key={item.href} href={item.href}>
+          <Link
+            key={item.href}
+            href={item.href}
+            className={item.mobileOnly ? "mobile-only" : undefined}
+          >
             {item.label}
           </Link>
         ))}
@@ -29,4 +34,3 @@ export function SiteHeader() {
     </header>
   );
 }
-
