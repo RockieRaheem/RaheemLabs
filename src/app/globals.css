@@ -375,6 +375,7 @@ ol {
   border-bottom: 1px solid var(--line);
   isolation: isolate;
   overflow: hidden;
+  color: var(--ink);
 }
 
 .hero > :not(.hero-media) {
@@ -387,13 +388,12 @@ ol {
   --pointer-y: 0rem;
   position: absolute;
   z-index: 0;
-  top: 7%;
-  right: 0;
-  width: min(64vw, 61rem);
-  height: 72%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
   overflow: hidden;
-  border-radius: 16rem 0 0 16rem;
+  border-radius: 0;
   background: var(--ink-soft);
   box-shadow: 0 2rem 6rem rgb(108 67 29 / 20%);
 }
@@ -401,14 +401,16 @@ ol {
 .hero-media::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--ink) 0%, rgb(246 237 217 / 12%) 34%, transparent 66%);
+  background:
+    linear-gradient(90deg, rgb(23 21 15 / 82%) 0%, rgb(23 21 15 / 48%) 46%, rgb(23 21 15 / 18%) 76%),
+    linear-gradient(0deg, rgb(23 21 15 / 76%) 0%, transparent 42%);
   content: "";
   pointer-events: none;
 }
 
 .hero-media img {
   object-fit: cover;
-  transform: translate(var(--pointer-x), var(--pointer-y)) scale(1.07);
+  transform: translate(var(--pointer-x), var(--pointer-y)) scale(1.05);
   transition: transform 900ms var(--ease-out);
   animation: hero-breathe 14s ease-in-out infinite alternate;
 }
@@ -452,7 +454,7 @@ ol {
 
 .hero__pretitle {
   margin-bottom: 1.2rem;
-  color: var(--canvas-muted);
+  color: rgb(246 237 217 / 72%);
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
@@ -466,7 +468,7 @@ ol {
 .hero__title em {
   color: transparent;
   font-style: normal;
-  -webkit-text-stroke: 1px var(--canvas);
+  -webkit-text-stroke: 1px var(--ink);
 }
 
 .hero__stamp {
@@ -478,9 +480,9 @@ ol {
   aspect-ratio: 1;
   place-content: center;
   transform: rotate(8deg);
-  border: 1px solid var(--copper);
+  border: 1px solid var(--copper-bright);
   border-radius: 50%;
-  color: var(--copper);
+  color: var(--copper-bright);
   text-align: center;
 }
 
@@ -516,6 +518,20 @@ ol {
   padding: 0.4rem;
   border: 1px solid var(--line);
   border-radius: 50%;
+}
+
+.hero .eyebrow,
+.hero .lead,
+.hero .scroll-cue {
+  color: var(--ink);
+}
+
+.hero .rhythm-line span {
+  background: rgb(246 237 217 / 28%);
+}
+
+.hero .rhythm-line span:nth-child(4n) {
+  background: var(--copper-bright);
 }
 
 .rhythm-line {
@@ -1090,14 +1106,17 @@ ol {
   .hero__footer { align-items: flex-start; flex-direction: column; }
   .hero__stamp { right: 0; bottom: -18%; }
   .hero-media {
-    top: 13%;
-    right: -18%;
-    width: 96%;
-    height: 43%;
-    border-radius: 8rem 0 0 8rem;
-    opacity: 0.8;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    opacity: 1;
   }
-  .hero-media::after { background: linear-gradient(180deg, rgb(246 237 217 / 6%), var(--ink) 96%); }
+  .hero-media::after {
+    background:
+      linear-gradient(180deg, rgb(23 21 15 / 34%), rgb(23 21 15 / 82%) 78%),
+      linear-gradient(90deg, rgb(23 21 15 / 58%), transparent);
+  }
   .hero-media figcaption { display: none; }
   .manifesto__content,
   .section-heading,
