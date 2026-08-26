@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/arrow-icon";
+import { HeroMedia } from "@/components/hero-media";
 import { ProjectCard } from "@/components/project-card";
 import { RhythmLine } from "@/components/rhythm-line";
 import { RoundLabel } from "@/components/round-label";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <main id="main-content" className="page-shell home-page">
       <section className="hero" aria-labelledby="hero-title">
+        <HeroMedia />
         <div className="hero__meta">
           <p className="eyebrow">{profile.location} / East Africa</p>
           <p className="eyebrow">Software / Stories / Discipline</p>
@@ -81,4 +83,3 @@ export default function HomePage() {
     </main>
   );
 }
-

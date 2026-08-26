@@ -7,8 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Built in the Lab. Forged in the Ring.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0c0c0b",
+    background_color: "#f6edd9",
     theme_color: "#ee6b2f",
   };
 }
-

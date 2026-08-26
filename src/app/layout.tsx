@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ExperienceLayer } from "@/components/experience-layer";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -39,8 +40,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "dark",
-  themeColor: "#0c0c0b",
+  colorScheme: "light",
+  themeColor: "#f6edd9",
 };
 
 type RootLayoutProps = Readonly<{
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <ExperienceLayer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
