@@ -1,10 +1,10 @@
 # RaheemLabs Portfolio
 
-An editorial personal portfolio for Kamwanga Rahiim, built around the idea:
+An interactive cinematic portfolio for Kamwanga Rahiim, built around the idea:
 
-> Built in the Lab. Forged in the Ring.
+> Built to go beyond limits.
 
-The site presents verified project stories, the future RaheemLabs publishing archive, community learning, and boxing as a personal discipline. The full product definition is in [docs/PRD.md](docs/PRD.md).
+The site presents verified project stories, RaheemLabs, and boxing as a personal discipline through the "Cinematic Technical Athlete" system in `REAL DESIGNS`. The full product definition is in [docs/PRD.md](docs/PRD.md).
 
 ## Stack
 
@@ -64,4 +64,3 @@ SisterCare and RentiHub use only details supported by currently available public
 ## Deployment
 
 Set `NEXT_PUBLIC_SITE_URL` to the canonical production origin before building. It controls metadata, structured data, `robots.txt`, and the generated sitemap. No production domain is assumed in the repository.
-

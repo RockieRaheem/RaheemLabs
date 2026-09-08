@@ -7,7 +7,7 @@
 | Version | 1.0 |
 | Status | Approved foundation for implementation |
 | Initial projects | SisterCare and RentiHub |
-| Working concept | Built in the Lab. Forged in the Ring. |
+| Working concept | Built to go beyond limits. |
 
 ## 1. Product summary
 
@@ -33,7 +33,7 @@ The experience should leave visitors with three ideas:
 
 ### Creative statement
 
-> Built in the Lab. Forged in the Ring.
+> Built to go beyond limits.
 
 ## 3. Goals and success criteria
 
@@ -137,8 +137,8 @@ The first release should prioritize excellent typography and purposeful 2D motio
 
 ### Visual language
 
-- Palette: carbon black, warm canvas, steel grey, copper-orange accent, and a restrained secondary green.
-- Typography: condensed display face for major statements, highly legible sans-serif for reading, and monospace for technical metadata.
+- Palette: near-black architectural surfaces, off-white typography, and luminous emerald used as a precise signal color.
+- Typography: Sora for kinetic display statements, Inter for reading, and JetBrains Mono for technical metadata.
 - Photography: original, high-contrast documentary images with natural grain.
 - Texture: athletic tape, canvas, marked-up paper, screen noise, and worn training surfaces used sparingly.
 - Layout: disciplined editorial grid with intentional breaks at key narrative moments.
@@ -148,10 +148,10 @@ The first release should prioritize excellent typography and purposeful 2D motio
 
 ### Primary navigation
 
-- Home
 - Work
-- RaheemLabs
-- About
+- Ethos
+- Boxing
+- Journey
 - Contact
 
 “Boxing” may initially live within About and the homepage narrative. It can become a standalone journal section once enough substantial content exists.
@@ -163,8 +163,9 @@ The first release should prioritize excellent typography and purposeful 2D motio
 | `/` | Narrative homepage and primary conversion surface | Required |
 | `/work` | Filterable project index | Required |
 | `/work/[slug]` | Structured project case study | Required |
-| `/raheemlabs` | Technology media and publishing index | Foundation required; entries optional |
-| `/about` | Biography, values, skills, boxing, and community | Required |
+| `/ethos` | Biography, values, and technical constellation | Required |
+| `/boxing` | Boxing discipline and its relationship to engineering | Required |
+| `/journey` | Verified timeline of learning and projects | Required |
 | `/contact` | Contact methods and collaboration prompts | Required |
 | `/journal/[slug]` | Future articles, media notes, or boxing entries | Data model only for first release |
 
@@ -480,4 +481,3 @@ Version 1 is complete when:
 - Accessibility, performance, SEO, and browser checks meet the agreed targets or have documented exceptions.
 - Kamwanga approves the biography, project roles, credits, imagery, and contact information.
 - Production monitoring and a repeatable deployment process are in place.
-
