@@ -29,7 +29,7 @@ export default function Home() {
       <div className="section-head" data-reveal><div><p className="eyebrow">02 / Selected systems</p><h2 className="section-title">Work with a pulse.</h2></div><Link href="/work">VIEW ALL PROJECTS ↗</Link></div>
       <div className="project-list">
         {projects.map((project,index)=><Link className="project-row" href={`/work/${project.slug}`} key={project.slug} data-reveal>
-          <span className="project-no">0{index+1}</span><div><p className="eyebrow">{project.kicker} / {project.year}</p><h3>{project.title}</h3><p>{project.summary}</p></div><div className={`project-art project-art--${project.tone}`}><Image src={project.slug === "sistercare" ? "/media/organic-systems.png" : "/media/technology-lab.png"} alt="" fill sizes="(max-width: 760px) 100vw, 42vw" /></div><span className="project-arrow">↗</span>
+          <span className="project-no">0{index+1}</span><div><p className="eyebrow">{project.kicker} / {project.year}</p><h3>{project.title}</h3><p>{project.summary}</p></div><div className={`project-art project-art--${project.tone}`}><Image src={project.cover} alt={`${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, 42vw" /></div><span className="project-arrow">↗</span>
         </Link>)}
       </div>
     </section>

@@ -35,6 +35,8 @@ export type Project = {
   tone: ProjectTone;
   featured: boolean;
   order: number;
+  cover: string;
+  gallery: readonly string[];
   sections: readonly ProjectSection[];
   evidence: readonly ProjectEvidence[];
   links: readonly ProjectLink[];
@@ -61,4 +63,3 @@ export type JournalEntry = {
   topics: readonly string[];
   externalUrl?: string;
 };
-

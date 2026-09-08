@@ -2,162 +2,44 @@ import type { Project } from "@/content/types";
 
 const projects = [
   {
-    slug: "sistercare",
-    title: "SisterCare",
-    kicker: "Technology with empathy",
-    summary:
-      "A supportive digital-health concept designed to make menstrual-health information and emotional support easier to approach.",
-    status: "published",
-    year: "2026",
-    disciplines: ["Digital health", "Product thinking", "AI"],
-    technologies: [],
-    role: "Team contributor",
-    teamNote:
-      "Built collaboratively for AI Fest. Individual responsibilities and technical details will be expanded after the team record is confirmed.",
-    tone: "green",
-    featured: true,
-    order: 1,
+    slug: "sistercare", title: "SisterCare", kicker: "Private support without judgment",
+    summary: "A multilingual support platform where girls and women can ask sensitive questions privately, track menstrual and emotional wellbeing, and request verified human support.",
+    status: "published", year: "2026", disciplines: ["Digital health", "Responsible AI", "Safety engineering"],
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Groq", "Gemini", "Sunbird", "Daily", "Vitest"],
+    role: "Builder and repository maintainer", tone: "green", featured: true, order: 1,
+    cover: "/media/sistercare-supported.png", gallery: ["/media/sistercare-supported.png", "/media/sistercare-private.png"],
+    teamNote: "The public repository is the source for the product and technical details shown here. SisterCare is preparing for a small, supervised, adult-only pilot; it is not an emergency service, diagnostic system, or unrestricted clinical product.",
     sections: [
-      {
-        id: "context",
-        label: "The context",
-        title: "Sensitive questions need safer spaces.",
-        paragraphs: [
-          "SisterCare began with a human observation: girls and women can struggle silently with menstrual health and emotional wellbeing when trusted, private support is difficult to reach.",
-          "The team explored how a digital experience could lower the barrier to asking questions while still recognizing that technology cannot replace appropriate human care.",
-        ],
-      },
-      {
-        id: "concept",
-        label: "The concept",
-        title: "Support before complexity.",
-        paragraphs: [
-          "The product concept brings cycle tracking, a conversational assistant called SisterAI, and access to human counsellors into one supportive experience.",
-          "The interface direction prioritizes privacy, plain language, calm feedback, and clear boundaries between informational assistance and human guidance.",
-        ],
-        points: [
-          "Cycle tracking for preparation and personal awareness",
-          "A judgment-free conversational starting point",
-          "A route to human counsellors when real support is needed",
-        ],
-      },
-      {
-        id: "reflection",
-        label: "The reflection",
-        title: "Technology becomes useful when people feel seen.",
-        paragraphs: [
-          "Presenting SisterCare reinforced an important principle: responsible products begin by listening to the people behind the problem.",
-          "The next case-study revision will document the team's validated research, implementation decisions, safeguards, and Kamwanga's exact contribution rather than filling gaps with assumptions.",
-        ],
-      },
+      { id: "problem", label: "The problem", title: "The first step toward support should not require a perfect explanation.", paragraphs: ["SisterCare responds to the shame, stigma, limited privacy, and fear of judgment that can prevent girls and women from asking about menstruation, emotional distress, relationships, harassment, loss, and other sensitive experiences.", "The product begins with a private conversation rather than a long health profile, then helps a member understand an appropriate next step without presenting AI as clinical care."] },
+      { id: "member-care", label: "Member experience", title: "Conversation, personal context, and accountable human care.", paragraphs: ["Members can use a private AI-assisted conversation, record menstrual cycles and physical symptoms, make concise emotional check-ins, browse governed content, and request anonymous text or audio support from a verified counsellor.", "The system distinguishes requested, assigned, and accepted support states. Durable notifications, low-bandwidth text fallback, follow-up tracking, and idempotent message retries are designed to prevent someone from being abandoned inside a workflow."], points: ["Private AI-assisted conversation with governed boundaries", "Verified counsellor matching, messaging, and short-lived Daily audio rooms", "Member-controlled retention, sharing, notifications, export, and deletion controls"] },
+      { id: "system", label: "The system", title: "Safety-critical decisions remain deterministic.", paragraphs: ["The application uses Next.js, React, TypeScript, and Tailwind. Supabase provides authentication, Postgres, Storage, Realtime, and Row Level Security; privileged operations remain server-side behind explicit role checks.", "AI requests route through Groq with Gemini fallback. Sunbird provides configured local-language speech and translation, while database and Vercel jobs support safety clocks and recovery checks. Models do not control crisis classification, authorization, record access, or escalation policy."] },
+      { id: "scope", label: "Responsible scope", title: "A supervised pilot, with limitations kept visible.", paragraphs: ["The language catalogue includes English, Luganda, Acholi, Lugbara, Runyankole, Ateso, and Swahili. The repository also documents keyboard support, visible focus states, semantic labels, responsive layouts, and text alternatives.", "Before wider launch, SisterCare still requires clinical and safeguarding ownership, jurisdiction-specific approval, verified emergency contacts, staffed escalation coverage, retention decisions, accessibility evidence, and completed pilot review."] },
     ],
-    evidence: [
-      {
-        label: "Recognition",
-        value: "Top 10",
-        note: "Presented among the Top 10 projects at AI Fest.",
-      },
-      {
-        label: "Product pillars",
-        value: "03",
-        note: "Tracking, conversational support, and human guidance.",
-      },
-    ],
-    links: [],
-    seo: {
-      title: "SisterCare case study",
-      description:
-        "Explore SisterCare, a collaborative digital-health concept presented by Kamwanga Rahiim and his team at AI Fest.",
-    },
+    evidence: [{ label: "Language catalogue", value: "07", note: "English plus six regional languages documented in the repository." }, { label: "Operational roles", value: "03", note: "Member, counsellor, and administrator workspaces." }],
+    links: [{ label: "View live application", href: "https://sister-care.vercel.app/" }, { label: "View source repository", href: "https://github.com/RockieRaheem/SisterCare" }],
+    seo: { title: "SisterCare case study", description: "How SisterCare combines private AI-assisted conversation, wellbeing tracking, verified counsellor support, multilingual access, and explicit safety boundaries." },
   },
   {
-    slug: "rentihub",
-    title: "RentiHub",
-    kicker: "A product shaped under pressure",
-    summary:
-      "A collaborative hackathon project recognized as first runner-up at UTAMU Student Developer Day.",
-    status: "published",
-    year: "2026",
-    disciplines: ["Hackathon", "Product development", "Collaboration"],
-    technologies: [],
-    role: "Team member",
-    teamNote:
-      "Developed with Sunday Emmanuel Lugai. Product features and individual technical responsibilities are intentionally withheld until confirmed.",
-    tone: "copper",
-    featured: true,
-    order: 2,
+    slug: "rentihub", title: "RentiHub", kicker: "Property operations built for Kampala",
+    summary: "A commercial property-management platform that brings buildings, units, tenants, rent collection, maintenance, reporting, and tamper-evident records into one system.",
+    status: "published", year: "2026", disciplines: ["Property technology", "Financial operations", "Data integrity"],
+    technologies: ["React 18", "Vite 5", "Tailwind CSS", "Supabase", "Postgres", "Stellar SDK"],
+    role: "Builder and repository maintainer", tone: "copper", featured: true, order: 2,
+    cover: "/media/rentihub-dashboard.png", gallery: ["/media/rentihub-dashboard.png", "/media/rentihub-payments.png"],
+    teamNote: "Descriptions are based on the current repository implementation and migrations. Figures visible in interface mockups are demonstration data and are not presented here as real adoption or financial results.",
     sections: [
-      {
-        id: "context",
-        label: "The context",
-        title: "Build, decide, and communicate under a deadline.",
-        paragraphs: [
-          "RentiHub was developed as a team project during UTAMU Student Developer Day, an environment built around rapid problem-solving, collaboration, and presentation.",
-          "The project is included here for its verified team result and the learning represented by the process. Its product claims will remain deliberately limited until the original brief and implementation are documented.",
-        ],
-      },
-      {
-        id: "process",
-        label: "The process",
-        title: "A clear decision beats an impressive assumption.",
-        paragraphs: [
-          "Hackathons compress research, scope, construction, and communication into a short window. The useful lesson is not to pretend every idea reached production, but to show how a team made decisions with limited time.",
-          "A future revision of this case study will include the problem statement, user journey, architecture, screenshots, responsibilities, and what the team would change with another iteration.",
-        ],
-      },
-      {
-        id: "reflection",
-        label: "The result",
-        title: "Evidence first. Detail next.",
-        paragraphs: [
-          "RentiHub was named first runner-up at the event. That result is public; the missing product details are not invented here.",
-          "This transparent draft demonstrates how RaheemLabs will treat every future case study: publish what can be supported and clearly identify what still needs primary evidence.",
-        ],
-      },
+      { id: "problem", label: "The problem", title: "Property records should not disappear into notebooks and message threads.", paragraphs: ["RentiHub is built in Kampala for commercial property managers who need one place to understand units, tenant assignments, payments, balances, and maintenance instead of reconstructing operations from spreadsheets, exercise books, and WhatsApp messages.", "The product models buildings, floors, units, tenants, leases, payments, maintenance requests, billing periods, and audit activity as connected operational records."] },
+      { id: "workflow", label: "The workflow", title: "From vacant unit to reconciled payment.", paragraphs: ["Authenticated users can create buildings and floors, configure commercial units, assign tenants, track lease details, record rent through cash, mobile money, or bank channels, and generate printable receipts.", "Dedicated views cover dashboards, property and floor details, rent collection, tenant payment history, financial reporting, maintenance requests, a maintenance board, and a Stellar notary dashboard."], points: ["Month-by-month billing periods and payment-allocation waterfall", "Occupancy and outstanding-balance tracking", "Maintenance priority, assignment, status, and resolution workflows"] },
+      { id: "architecture", label: "The architecture", title: "A React interface over owner-isolated operational data.", paragraphs: ["The current application uses React, React Router, Vite, and Tailwind CSS. Supabase provides authentication and Postgres persistence, with Row Level Security policies tying buildings and inherited records to the authenticated owner.", "Database functions and triggers propagate building relationships, update unit occupancy when tenants change, create billing periods, allocate payments, and keep cached tenant balances synchronized."] },
+      { id: "integrity", label: "Data integrity", title: "Operational changes can carry a cryptographic receipt.", paragraphs: ["The Stellar integration canonicalizes records, computes SHA-256 hashes, and can anchor those hashes to Stellar transactions. The generic anchor ledger covers payments, tenants, maintenance, floors, and units.", "The implementation also provides record verification and a dedicated notary dashboard. When Stellar credentials are not configured, local hashing returns an explicit configuration error rather than pretending an on-chain anchor exists."] },
     ],
-    evidence: [
-      {
-        label: "Recognition",
-        value: "02",
-        note: "First runner-up at UTAMU Student Developer Day.",
-      },
-      {
-        label: "Team",
-        value: "02",
-        note: "Kamwanga Rahiim and Sunday Emmanuel Lugai.",
-      },
-    ],
-    links: [],
-    seo: {
-      title: "RentiHub case study",
-      description:
-        "Read the verified foundation of RentiHub, a first-runner-up project at UTAMU Student Developer Day.",
-    },
+    evidence: [{ label: "Core data families", value: "08", note: "Profiles, buildings, floors, units, tenants, payments, maintenance, and audit records in the base schema." }, { label: "Anchored record types", value: "05", note: "Payments, tenants, maintenance, floors, and units." }],
+    links: [{ label: "View source repository", href: "https://github.com/RockieRaheem/Renti-Hub" }],
+    seo: { title: "RentiHub case study", description: "How RentiHub combines property operations, rent accounting, maintenance workflows, Supabase data controls, and Stellar-backed integrity." },
   },
 ] as const satisfies readonly Project[];
 
-export function getPublishedProjects(): readonly Project[] {
-  return projects
-    .filter((project) => project.status === "published")
-    .sort((a, b) => a.order - b.order);
-}
-
-export function getFeaturedProjects(): readonly Project[] {
-  return getPublishedProjects().filter((project) => project.featured);
-}
-
-export function getProject(slug: string): Project | undefined {
-  return getPublishedProjects().find((project) => project.slug === slug);
-}
-
-export function getAdjacentProject(slug: string): Project | undefined {
-  const published = getPublishedProjects();
-  const currentIndex = published.findIndex((project) => project.slug === slug);
-
-  if (currentIndex === -1) {
-    return undefined;
-  }
-
-  return published[(currentIndex + 1) % published.length];
-}
-
+export function getPublishedProjects(): readonly Project[] { return projects.filter((project) => project.status === "published").sort((a, b) => a.order - b.order); }
+export function getFeaturedProjects(): readonly Project[] { return getPublishedProjects().filter((project) => project.featured); }
+export function getProject(slug: string): Project | undefined { return getPublishedProjects().find((project) => project.slug === slug); }
+export function getAdjacentProject(slug: string): Project | undefined { const published=getPublishedProjects();const index=published.findIndex((project)=>project.slug===slug);return index===-1?undefined:published[(index+1)%published.length]; }

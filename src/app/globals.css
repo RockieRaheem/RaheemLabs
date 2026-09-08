@@ -44,3 +44,8 @@ main{min-height:100vh}.page-shell{padding-top:72px}.eyebrow{font:500 .65rem var(
 .project-row:hover:before,.case-card:hover:before{transform:translateX(120%)}
 .case-card{position:relative}
 @media(prefers-reduced-motion:reduce){.shader-backdrop{display:none}.route-enter:after{display:none}.boxing-intro .section-title,.rounds h2{clip-path:none}.spectrum i,.timeline-node{animation:none}}
+.case-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1rem}.case-links .button{margin-top:.5rem}
+.case-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;background:#080a09}
+.case-gallery>div{position:relative;min-height:42rem;overflow:hidden;border:1px solid var(--line);background:#eef0ee}
+.case-gallery img{object-fit:contain;transition:transform .8s cubic-bezier(.16,1,.3,1)}.case-gallery>div:hover img{transform:scale(1.025)}
+@media(max-width:760px){.case-gallery{grid-template-columns:1fr}.case-gallery>div{min-height:28rem}.case-links{align-items:flex-start;flex-direction:column}.case-facts b{overflow-wrap:anywhere}}
