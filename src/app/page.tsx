@@ -7,17 +7,16 @@ export default function Home() {
   const projects = getFeaturedProjects();
   return <main id="main" className="page-shell">
     <section className="home-hero">
-      <Image className="home-hero__image" src="/media/boxing-hero.png" alt="Boxer training with focus in a dark gym" fill priority sizes="100vw" />
-      <div className="home-hero__shade" />
       <div className="hero-status eyebrow"><span>UGANDA / EAST AFRICA</span><span>ENGINEER / CREATOR / BOXER</span></div>
+      <div className="hero-orbit" aria-hidden="true"><i /><i /><i /><span>RL</span></div>
       <div className="hero-copy">
-        <p className="eyebrow">Kamwanga Rahiim presents</p>
-        <h1 className="display">Built to go<br /><em>beyond</em> limits.</h1>
+        <p className="eyebrow" data-glitch>Kamwanga Rahiim / System online</p>
+        <h1 className="display"><span>Build technology</span><br />for <em>problems worth</em><br /><span className="outline">solving.</span></h1>
         <p>I engineer useful products, document what I learn through RaheemLabs, and train with the discipline of a boxer.</p>
-        <div><Link className="button" href="/work">Explore the work <span>↗</span></Link></div>
+        <div className="hero-actions"><Link className="button" data-magnetic href="/work">Explore the work <span>↗</span></Link><Link className="button button--ghost" data-magnetic href="/ethos">Read my ethos</Link></div>
       </div>
       <div className="hero-index"><b>01</b><span>PERSONAL OPERATING SYSTEM</span></div>
-      <a className="scroll-cue" href="#work">SCROLL TO EXPLORE ↓</a>
+      <a className="scroll-cue" href="#work" data-glitch>SCROLL TO EXPLORE ↓</a>
     </section>
 
     <section className="manifest section" data-reveal>

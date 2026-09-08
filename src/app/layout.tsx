@@ -3,6 +3,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Experience } from "@/components/experience";
+import { ShaderBackdrop } from "@/components/shader-backdrop";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
         <Experience />
+        <ShaderBackdrop />
         <SiteHeader />
         {children}
         <SiteFooter />
