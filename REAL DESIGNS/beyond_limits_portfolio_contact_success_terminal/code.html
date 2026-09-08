@@ -1,0 +1,445 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact Terminal | Beyond Limits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#4edea3",
+                      "secondary-fixed": "#d0e9d6",
+                      "surface": "#131313",
+                      "on-secondary-fixed-variant": "#364c3e",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-secondary-fixed": "#0a2014",
+                      "secondary": "#b4ccbb",
+                      "primary-fixed": "#6ffbbe",
+                      "surface-container-lowest": "#0e0e0e",
+                      "tertiary": "#c6c6c7",
+                      "inverse-surface": "#e5e2e1",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#4edea3",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#bbcabf",
+                      "on-secondary-container": "#a3bbaa",
+                      "surface-container-high": "#2a2a2a",
+                      "primary-container": "#10b981",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-primary-fixed": "#002113",
+                      "tertiary-fixed": "#e2e2e2",
+                      "background": "#131313",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-error-container": "#ffdad6",
+                      "secondary-container": "#364c3e",
+                      "surface-container": "#201f1f",
+                      "on-tertiary-container": "#38393a",
+                      "outline-variant": "#3c4a42",
+                      "on-secondary": "#203529",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary": "#003824",
+                      "surface-bright": "#3a3939",
+                      "on-primary-fixed-variant": "#005236",
+                      "inverse-on-surface": "#313030",
+                      "surface-variant": "#353534",
+                      "outline": "#86948a",
+                      "on-background": "#e5e2e1",
+                      "tertiary-container": "#a2a3a3",
+                      "secondary-fixed-dim": "#b4ccbb",
+                      "surface-dim": "#131313",
+                      "inverse-primary": "#006c49",
+                      "on-tertiary": "#2f3131",
+                      "primary": "#4edea3",
+                      "on-error": "#690005",
+                      "on-primary-container": "#00422b",
+                      "on-surface": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "32px",
+                      "container-max": "1440px",
+                      "margin-desktop": "80px",
+                      "section-gap": "160px",
+                      "margin-mobile": "24px"
+              },
+              "fontFamily": {
+                      "display-xl": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "display-xl": [
+                              "120px",
+                              {
+                                      "lineHeight": "110px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Cinematic Minimalism Additions */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle Film Grain */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* Boxing Ring Grid Lines */
+        .ring-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(26, 47, 35, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(26, 47, 35, 0.5) 1px, transparent 1px);
+            background-size: calc(100% / 12) 100%, 100% 160px;
+        }
+        
+        @media (max-width: 768px) {
+             .ring-grid {
+                 background-size: calc(100% / 4) 100%, 100% 160px;
+             }
+        }
+
+        /* Scanner Line Animation */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: theme('colors.primary');
+            opacity: 0.5;
+            box-shadow: 0 0 10px theme('colors.primary'), 0 0 20px theme('colors.primary');
+            animation: scan 4s linear infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            5% { opacity: 0.5; }
+            95% { opacity: 0.5; }
+            100% { top: 100%; opacity: 0; }
+        }
+        
+        /* Terminal Blinking Cursor */
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Input Styling (Terminal style) */
+        .terminal-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid theme('colors.outline-variant');
+            color: theme('colors.primary');
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.2s ease;
+        }
+        
+        .terminal-input:focus {
+            outline: none;
+            border-bottom: 1px solid theme('colors.primary');
+            box-shadow: 0 1px 0 theme('colors.primary');
+        }
+        
+        /* Button Tactical Hover */
+        .tactical-btn {
+            background-color: theme('colors.primary-container');
+            color: #050505;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .tactical-btn:hover {
+            background-color: transparent;
+            color: theme('colors.primary');
+            border: 1px solid theme('colors.primary');
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+        
+        .tactical-btn:active {
+            transform: scale(0.98);
+        }
+
+    </style>
+<style class="">
+        /* Ghost Caret and Kinetic Pulse */
+        .terminal-input:focus {
+            box-shadow: 0 0 15px rgba(78, 222, 163, 0.15), inset 0 0 5px rgba(78, 222, 163, 0.05);
+            animation: input-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes input-pulse {
+            0%, 100% { border-color: theme('colors.primary'); }
+            50% { border-color: theme('colors.primary-fixed-dim'); box-shadow: 0 0 20px rgba(78, 222, 163, 0.25); }
+        }
+
+        /* Digital Glitch Flicker on Interaction */
+        .group\/input:active {
+            animation: glitch-flicker 0.2s ease-in-out;
+        }
+
+        @keyframes glitch-flicker {
+            0% { opacity: 1; transform: translateX(0); }
+            20% { opacity: 0.8; transform: translateX(-1px); }
+            40% { opacity: 1; transform: translateX(1px); }
+            60% { opacity: 0.9; transform: translateX(-1px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Bit-by-bit text appearance simulation */
+        .terminal-input {
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 2px rgba(78, 222, 163, 0.3);
+        }
+
+        /* Ghost Caret Simulation */
+        .terminal-input::placeholder {
+            animation: caret-blink 1.2s infinite step-end;
+            color: theme('colors.primary');
+            opacity: 0.6;
+        }
+
+        @keyframes caret-blink {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0; }
+        }
+    </style></head>
+<body class="antialiased font-body-md text-body-md"><div id="system-reset-flash" class="system-flash"></div>
+<!-- Ambient Additions -->
+<div class="film-grain"></div>
+<div class="ring-grid"></div>
+<!-- Top Nav Bar Shell (Suppressed contextually if needed, but keeping standard layout) -->
+<nav class="fixed top-0 w-full bg-surface/80 backdrop-blur-xl border-b border-outline-variant/50 flex justify-between items-center px-margin-desktop py-4 mx-auto max-w-container-max z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">
+            FIGHT_CODE
+        </div>
+<div class="hidden md:flex space-x-gutter">
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">STRENGTH</a>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">CODE</a>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">RECORDS</a>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">STATS</a>
+</div>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-primary border-b-2 border-primary pb-1 active:scale-95 transition-all duration-150" href="#">CONTACT</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="min-h-screen pt-[120px] pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col items-center justify-center relative">
+<!-- Hero Section -->
+<header class="w-full text-center mb-16 md:mb-32 relative">
+<!-- Technical Meta Data -->
+<div class="absolute top-0 left-0 font-label-mono text-label-mono text-outline-variant opacity-50 hidden md:block">
+                LOG_ENTRY: 2024<br>
+                SEQ: 8901.AX
+            </div>
+<div class="absolute top-0 right-0 font-label-mono text-label-mono text-outline-variant opacity-50 text-right hidden md:block">
+                TERMINAL_ID: BL-01<br>
+                STATUS: STANDBY
+            </div>
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-on-surface tracking-tighter uppercase relative inline-block overflow-hidden">
+                CONNECT
+                <div class="scanline"></div>
+</h1>
+<p class="mt-8 font-label-mono text-label-mono text-primary tracking-widest">
+                [ INIT SECURE CHANNEL ]
+            </p>
+</header>
+<!-- Terminal Module -->
+<section class="w-full max-w-3xl relative">
+<!-- Glassmorphic Terminal Container -->
+<div class="border border-outline-variant/30 bg-surface-container/40 backdrop-blur-md p-6 md:p-12 relative overflow-hidden group hover:border-primary/50 transition-colors duration-500 active:scale-[0.995]"><div class="scanline opacity-20" style="animation-duration: 8s; animation-delay: -2s;"></div>
+<div class="scanline"></div>
+<!-- Terminal Header / Status -->
+<div class="flex justify-between items-end border-b border-outline-variant/50 pb-4 mb-8">
+<div class="flex flex-col space-y-2">
+<span class="font-label-mono text-label-mono text-outline">TRANSMISSION: COMPLETE</span>
+<span class="font-label-mono text-label-mono text-primary">ENCRYPTION: ACTIVE (AES-256)</span>
+</div>
+<div class="text-right flex flex-col space-y-2">
+<span class="font-label-mono text-label-mono text-outline">TRANSMISSION: COMPLETE</span>
+<span class="font-label-mono text-label-mono text-primary flex items-center justify-end gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                            ONLINE
+                        </span>
+</div>
+</div>
+<!-- CLI Form -->
+<div class="space-y-8 font-label-mono text-label-mono">
+<!-- Technical Success Log -->
+<div class="space-y-2 text-primary">
+<div class="flex gap-4">
+<span class="text-primary">[ OK ]</span>
+<span class="text-on-surface-variant">DATA_PACKET_ENCRYPTED</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary">[ OK ]</span>
+<span class="text-on-surface-variant">UPLINK_HANDSHAKE_COMPLETE</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary">[ OK ]</span>
+<span class="text-on-surface-variant">TRANSMISSION_SUCCESSFUL: 200 OK</span>
+</div>
+</div>
+<!-- Centered Status Message -->
+<div class="py-12 text-center">
+<h2 class="text-headline-md font-bold text-primary tracking-widest animate-pulse drop-shadow-[0_0_15px_rgba(78,222,163,0.5)]">
+            SECURE CHANNEL ESTABLISHED
+        </h2>
+<p class="mt-4 text-outline-variant opacity-70">
+            CONFIRM_ID: BL-5582-TX
+        </p>
+</div>
+<!-- Action Button -->
+<div class="pt-8 border-t border-outline-variant/30 flex justify-center">
+<a class="tactical-btn px-8 py-4 font-label-mono text-label-mono uppercase tracking-widest flex items-center gap-4 tactical-btn-enhanced" href="/" onclick="this.classList.add('animate-recoil'); document.getElementById('system-reset-flash').classList.add('animate-flash'); setTimeout(() =&gt; { this.classList.remove('animate-recoil'); document.getElementById('system-reset-flash').classList.remove('animate-flash'); }, 300);">
+            RETURN_HOME
+            <span class="material-symbols-outlined">
+                home
+            </span>
+</a>
+</div>
+</div>
+</div>
+<!-- Technical Decorators -->
+<div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-primary/40 hidden md:block"></div>
+<div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-primary/40 hidden md:block"></div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full border-t border-outline-variant/50 bg-surface flex flex-col md:flex-row justify-between items-center px-margin-desktop py-8 max-w-container-max mx-auto">
+<div class="font-label-mono text-label-mono text-primary mb-4 md:mb-0">
+            SYSTEM_STATUS: OPERATIONAL // ©2024 ENGINE_CORE
+        </div>
+<div class="flex space-x-gutter">
+<span class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors">LATENCY: 24MS</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors">ENCRYPTION: AES-256</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors">UPTIME: 99.9%</span>
+</div>
+</footer>
+<script>
+        // Simple script to handle terminal input focus effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.terminal-input');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.querySelector('label').classList.add('text-primary');
+                    this.parentElement.querySelector('label').classList.remove('text-on-surface-variant');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.querySelector('label').classList.remove('text-primary');
+                    this.parentElement.querySelector('label').classList.add('text-on-surface-variant');
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MK | Beyond Limits</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#201f1f",
+                      "on-secondary": "#203529",
+                      "on-secondary-fixed-variant": "#364c3e",
+                      "secondary-fixed-dim": "#b4ccbb",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-secondary-fixed": "#0a2014",
+                      "tertiary-fixed": "#e2e2e2",
+                      "secondary": "#b4ccbb",
+                      "on-surface-variant": "#bbcabf",
+                      "inverse-on-surface": "#313030",
+                      "tertiary": "#c6c6c7",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "inverse-primary": "#006c49",
+                      "on-background": "#e5e2e1",
+                      "primary-fixed": "#6ffbbe",
+                      "primary": "#4edea3",
+                      "outline": "#86948a",
+                      "primary-container": "#10b981",
+                      "secondary-container": "#364c3e",
+                      "tertiary-container": "#a2a3a3",
+                      "error": "#ffb4ab",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-tertiary-container": "#38393a",
+                      "on-error": "#690005",
+                      "surface-container-highest": "#353534",
+                      "surface-variant": "#353534",
+                      "on-tertiary": "#2f3131",
+                      "on-surface": "#e5e2e1",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-high": "#2a2a2a",
+                      "on-primary-fixed": "#002113",
+                      "surface-bright": "#3a3939",
+                      "primary-fixed-dim": "#4edea3",
+                      "background": "#131313",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#a3bbaa",
+                      "on-primary-fixed-variant": "#005236",
+                      "on-primary": "#003824",
+                      "surface": "#131313",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-dim": "#131313",
+                      "outline-variant": "#3c4a42",
+                      "surface-tint": "#4edea3",
+                      "on-primary-container": "#00422b",
+                      "secondary-fixed": "#d0e9d6",
+                      "on-tertiary-fixed-variant": "#454747"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1440px",
+                      "gutter": "32px",
+                      "margin-desktop": "80px",
+                      "section-gap": "160px",
+                      "unit": "8px",
+                      "margin-mobile": "24px"
+              },
+              "fontFamily": {
+                      "display-xl": ["Sora"],
+                      "headline-lg-mobile": ["Sora"],
+                      "label-mono": ["JetBrains Mono"],
+                      "headline-md": ["Sora"],
+                      "headline-lg": ["Sora"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-xl": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "headline-lg-mobile": ["40px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .grid-lines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                linear-gradient(to right, rgba(26, 47, 35, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(26, 47, 35, 0.5) 1px, transparent 1px);
+            background-size: calc(100% / 12) 100vh;
+        }
+
+        @media (max-width: 768px) {
+            .grid-lines {
+                background-size: calc(100% / 4) 100vh;
+            }
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #10B981;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+
+        .cursor-outline {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s, transform 0.1s ease-out;
+        }
+
+        .view-mode .cursor-dot {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            border: 1px solid #10B981;
+        }
+        
+        .view-mode .cursor-dot::after {
+            content: "VIEW";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #10B981;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .view-mode .cursor-outline {
+            opacity: 0;
+        }
+
+        .btn-primary {
+            position: relative;
+            background-color: #10B981;
+            color: #050505;
+            padding: 16px 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #10B981;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #10B981;
+            transform: scale(1.02);
+        }
+
+        .btn-ghost {
+            position: relative;
+            background-color: transparent;
+            color: #e5e2e1;
+            padding: 16px 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(229, 226, 225, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-ghost:hover {
+            border-color: #10B981;
+            color: #10B981;
+            transform: scale(1.02);
+        }
+
+        .glass-panel {
+            background: rgba(32, 31, 31, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .scroll-down-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .horizontal-scroll-container {
+            display: flex;
+            width: 200vw;
+            height: 100vh;
+        }
+        
+        .case-study-panel {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .impact-reveal {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            filter: blur(8px);
+            transition: all 0s;
+        }
+
+        .impact-reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            transition: all 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+            animation: impactFlash 0.4s ease-out forwards;
+        }
+        
+        .impact-reveal.delay-1 { transition-delay: 0.1s; }
+        .impact-reveal.delay-2 { transition-delay: 0.2s; }
+
+        @keyframes impactFlash {
+            0% { text-shadow: 0 0 0px rgba(16, 185, 129, 0); }
+            30% { text-shadow: 0 0 24px rgba(16, 185, 129, 0.8); }
+            100% { text-shadow: 0 0 0px rgba(16, 185, 129, 0); }
+        }
+
+        .system-flash {
+            position: fixed;
+            inset: 0;
+            background-color: #10B981;
+            z-index: 100000;
+            pointer-events: none;
+            opacity: 0;
+            mix-blend-mode: screen;
+        }
+
+        .system-flash.active {
+            animation: tacticalFlash 0.3s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+        }
+
+        @keyframes tacticalFlash {
+            0% { opacity: 0; }
+            20% { opacity: 0.4; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<div class="system-flash" id="system-flash"></div>
+<div class="film-grain"></div>
+<div class="grid-lines hidden md:block"></div>
+<div class="cursor-dot hidden md:block"></div>
+<div class="cursor-outline hidden md:block"></div>
+<!-- Top Navigation (Web) -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl border-b border-outline-variant/10 hidden md:block transition-all duration-300" id="main-header">
+<div class="flex justify-between items-center px-gutter py-unit w-full max-w-container-max mx-auto h-20">
+<a class="font-display-xl text-body-lg font-bold text-primary tracking-tighter nav-action" href="#">MK</a>
+<nav class="flex gap-8">
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:scale-105 transition-transform duration-300 magnetic-effect cursor-pointer nav-action" href="#work">Work</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:scale-105 transition-transform duration-300 magnetic-effect cursor-pointer nav-action" href="#ethos">Ethos</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:scale-105 transition-transform duration-300 magnetic-effect cursor-pointer nav-action" href="#boxer">Boxer</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:scale-105 transition-transform duration-300 magnetic-effect cursor-pointer nav-action" href="#contact">Contact</a>
+</nav>
+<button class="text-on-surface-variant hover:text-primary transition-colors magnetic-effect">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</header>
+<!-- Side Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 glass-panel border-t border-outline-variant/30 px-6 py-4 flex justify-between items-center">
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors nav-action" href="#work">
+<span class="material-symbols-outlined text-xl mb-1">code</span>
+<span class="font-label-mono text-[10px]">Work</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors nav-action" href="#ethos">
+<span class="material-symbols-outlined text-xl mb-1">architecture</span>
+<span class="font-label-mono text-[10px]">Ethos</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors nav-action" href="#boxer">
+<span class="material-symbols-outlined text-xl mb-1">sports_mma</span>
+<span class="font-label-mono text-[10px]">Boxer</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors nav-action" href="#contact">
+<span class="material-symbols-outlined text-xl mb-1">mail</span>
+<span class="font-label-mono text-[10px]">Connect</span>
+</a>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex flex-col justify-center overflow-hidden pt-20 md:pt-0">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-gutter md:px-margin-desktop grid grid-cols-4 md:grid-cols-12 gap-6">
+<div class="col-span-4 md:col-span-10 md:col-start-2 fade-up">
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-on-background mb-8 uppercase tracking-tighter">
+                        I build technology for <br class="hidden md:block"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">problems worth solving.</span>
+</h1>
+<div class="font-label-mono text-label-mono text-primary mb-12 flex flex-wrap gap-4 items-center">
+<span class="px-4 py-2 border border-primary/30 glass-panel">Software Engineer</span>
+<span class="h-px w-4 bg-primary/50 hidden md:block"></span>
+<span class="px-4 py-2 border border-primary/30 glass-panel">Builder</span>
+<span class="h-px w-4 bg-primary/50 hidden md:block"></span>
+<span class="px-4 py-2 border border-primary/30 glass-panel">Boxer</span>
+<span class="h-px w-4 bg-primary/50 hidden md:block"></span>
+<span class="px-4 py-2 border border-primary/30 glass-panel">Global Thinker</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-6">
+<a class="btn-primary magnetic-effect nav-action" href="#work">
+                            Explore My Work
+                            <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</a>
+<a class="btn-ghost magnetic-effect nav-action" href="#ethos">
+                            About Me
+                        </a>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 scroll-down-indicator opacity-50">
+<span class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Scroll to explore</span>
+<span class="material-symbols-outlined text-primary text-sm">south</span>
+</div>
+</section>
+<!-- Project Showcase -->
+<section class="py-section-gap relative" id="work">
+<div class="max-w-container-max mx-auto px-gutter md:px-margin-desktop mb-24 fade-up">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">
+                    Elite <span class="text-primary italic">Execution.</span>
+</h2>
+<div class="h-px w-full bg-outline-variant/30 mt-8"></div>
+</div>
+<div class="flex flex-col gap-32">
+<!-- Project 1 -->
+<div class="max-w-container-max mx-auto px-gutter md:px-margin-desktop grid grid-cols-4 md:grid-cols-12 gap-8 items-center view-trigger">
+<div class="col-span-4 md:col-span-5 order-2 md:order-1">
+<div class="font-label-mono text-label-mono text-primary mb-4 flex gap-2">
+<span class="border border-primary px-2 py-1 impact-reveal">AI Architecture</span>
+<span class="border border-outline-variant px-2 py-1 text-on-surface-variant impact-reveal">2023</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-6 impact-reveal">Astra AI</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 impact-reveal delay-1">
+                            Architected and led the engineering team for a high-performance, distributed machine learning inference engine. Reduced latency by 40% for real-time natural language processing tasks in enterprise environments.
+                        </p>
+<a class="btn-ghost magnetic-effect impact-reveal delay-2 nav-action" href="#">
+                            View Case Study <span class="material-symbols-outlined ml-2 text-sm">north_east</span>
+</a>
+</div>
+<div class="col-span-4 md:col-span-7 order-1 md:order-2 relative aspect-[4/3] group overflow-hidden fade-up">
+<div class="absolute inset-0 bg-primary/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105" data-alt="A sophisticated, high-tech digital interface displaying complex neural network visualizations and data streams. The design is sleek, using deep blacks and dark grays with vibrant neon green (emerald) accents highlighting data points. The layout is cinematic and moody, resembling a high-end HUD or futuristic terminal screen in a minimalist, tech-focused environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiTBujibbOSVHXnXawhoNJCXLcWBCuPWSx1spxhgqQsSRfXRkBPMYWlQrJO56i9D46dtaAzi-1Pn6BLjFmbCPIaCpV4ie2e3xapFLVo-wNpLe11Go5QNgZXX5W_kn3e4-qSaOjOPtDTaWr9SC2Jj396ocxYE-lpTmhaudRChvlSf_HPNTus0B8KzwHSZQdinPsTIgCHncxJQQkxu57kz5iXBRhhTiPjeDocHeofc_9IUT79q49LebS"/>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="max-w-container-max mx-auto px-gutter md:px-margin-desktop grid grid-cols-4 md:grid-cols-12 gap-8 items-center view-trigger">
+<div class="col-span-4 md:col-span-7 relative aspect-[4/3] group overflow-hidden fade-up">
+<div class="absolute inset-0 bg-primary/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105" data-alt="A clean, minimalist 3D rendering of an architectural or environmental technology concept. It features sleek, geometric structures integrated with subtle, organic textures and soft lighting. The color palette is dominated by dark, moody tones with accents of fresh, vibrant forest green. The atmosphere is calm, precise, and highly engineered, reflecting sustainable innovation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiUZVt94QTD9g4td4gRsmWrxK2-pQaJpC6MHpzfSi-Rw6FBss8HlFykQuKcdwxM5dwhWZ_jGQk08DBacfM_yyjBpVkB3SR3eZH185fZqQwxzjdoczSlextKPozPPR6yYRxrd-qsdmy0f3tW5Bcr3uv5CUEMLfEFNiVqJ9_Ai7G52U2H6iSXjx3cehoLjgyMO7CnyK3clOikWUMY8CvXxJWPOdJ0eaS-jufmOmSux2UL1EPB3aL4K4B"/>
+</div>
+<div class="col-span-4 md:col-span-5 pl-0 md:pl-12">
+<div class="font-label-mono text-label-mono text-primary mb-4 flex gap-2">
+<span class="border border-primary px-2 py-1 impact-reveal">Sustainable Tech</span>
+<span class="border border-outline-variant px-2 py-1 text-on-surface-variant impact-reveal">2022</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-6 impact-reveal">BioFlow</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 impact-reveal delay-1">
+                            Developed a full-stack platform optimizing resource allocation in controlled environment agriculture. Leveraged IoT sensor data to drive predictive models, increasing yield efficiency while minimizing water usage.
+                        </p>
+<a class="btn-ghost magnetic-effect impact-reveal delay-2 nav-action" href="#">
+                            View Case Study <span class="material-symbols-outlined ml-2 text-sm">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface w-full py-section-gap border-t border-outline-variant/30 relative z-10" id="contact">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-unit">
+<div class="font-display-xl text-body-md text-on-surface text-center md:text-left mb-8 md:mb-0">
+<p class="font-headline-md text-headline-md mb-4 text-primary">Let's build something that matters.</p>
+<p class="font-label-mono text-label-mono opacity-50">© 2024 ENGINEER BUILDER BOXER. ENGINEERED FOR PERFORMANCE.</p>
+</div>
+<div class="flex gap-6 font-label-mono text-label-mono">
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Github</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Manifesto</a>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const viewTriggers = document.querySelectorAll('.view-trigger');
+
+        document.addEventListener('mousemove', (e) => {
+            if (cursorDot && cursorOutline) {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                
+                // Small delay for outline
+                setTimeout(() => {
+                    cursorOutline.style.left = e.clientX + 'px';
+                    cursorOutline.style.top = e.clientY + 'px';
+                }, 50);
+            }
+        });
+
+        viewTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => {
+                document.body.classList.add('view-mode');
+            });
+            trigger.addEventListener('mouseleave', () => {
+                document.body.classList.remove('view-mode');
+            });
+        });
+
+        // Magnetic Effect
+        const magneticElements = document.querySelectorAll('.magnetic-effect');
+        
+        magneticElements.forEach(elem => {
+            elem.addEventListener('mousemove', (e) => {
+                const rect = elem.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                elem.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+            });
+
+            elem.addEventListener('mouseleave', () => {
+                elem.style.transform = 'translate(0px, 0px) scale(1)';
+            });
+        });
+
+        // Fade Up Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-up');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Impact Reveal Animation on Scroll
+        const impactElements = document.querySelectorAll('.impact-reveal');
+        
+        const impactObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Slight random delay for staggered feel if multiple hit at once, or use the preset classes
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, 50);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+
+        impactElements.forEach(el => impactObserver.observe(el));
+
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-surface-container-lowest/80');
+                header.classList.remove('bg-transparent');
+            } else {
+                header.classList.remove('shadow-lg', 'bg-surface-container-lowest/80');
+                header.classList.add('bg-transparent');
+            }
+        });
+
+        // System Flash Effect
+        const systemFlash = document.getElementById('system-flash');
+        const navActions = document.querySelectorAll('.nav-action');
+        
+        navActions.forEach(action => {
+            action.addEventListener('click', (e) => {
+                if (systemFlash) {
+                    systemFlash.classList.remove('active');
+                    void systemFlash.offsetWidth; // Trigger reflow
+                    systemFlash.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body></html>

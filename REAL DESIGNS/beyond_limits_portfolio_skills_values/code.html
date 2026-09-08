@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nature &amp; Values | Beyond Limits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Add Three.js library for the custom element to work if it needs it (assuming custom element handles it or it's needed globally) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#86948a",
+                        "secondary": "#b4ccbb",
+                        "inverse-surface": "#e5e2e1",
+                        "on-primary-container": "#00422b",
+                        "inverse-primary": "#006c49",
+                        "primary": "#4edea3",
+                        "on-tertiary-container": "#38393a",
+                        "surface-variant": "#353534",
+                        "surface": "#131313",
+                        "on-surface-variant": "#bbcabf",
+                        "tertiary": "#c6c6c7",
+                        "on-tertiary": "#2f3131",
+                        "on-secondary-container": "#a3bbaa",
+                        "secondary-fixed": "#d0e9d6",
+                        "surface-dim": "#131313",
+                        "surface-container": "#201f1f",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e5e2e1",
+                        "tertiary-container": "#a2a3a3",
+                        "surface-container-high": "#2a2a2a",
+                        "background": "#131313",
+                        "secondary-fixed-dim": "#b4ccbb",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#6ffbbe",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "outline-variant": "#3c4a42",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-primary-fixed": "#002113",
+                        "surface-container-highest": "#353534",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#3a3939",
+                        "on-secondary": "#203529",
+                        "on-secondary-fixed-variant": "#364c3e",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-fixed": "#0a2014",
+                        "secondary-container": "#364c3e",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#4edea3",
+                        "on-primary": "#003824",
+                        "primary-container": "#10b981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px",
+                        "unit": "8px",
+                        "section-gap": "160px",
+                        "gutter": "32px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-mono": ["JetBrains Mono"],
+                        "display-xl": ["Sora"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "headline-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        /* Atmospheric Film Grain */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Grid Lines */
+        .ring-grid {
+            background-size: 8.333333% 100%;
+            background-image: linear-gradient(to right, rgba(26, 47, 35, 0.5) 1px, transparent 1px);
+            background-position: left top;
+        }
+
+        /* Subtle Bloom Animation */
+        @keyframes subtle-bloom {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        .animate-bloom {
+            animation: subtle-bloom 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        
+        /* Magnetic CTA Hover */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .magnetic-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Glassmorphic skill cards */
+        .glass-card {
+            background: rgba(26, 28, 28, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(78, 222, 163, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        /* Scroll reveal for skills */
+        .reveal-skill {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-skill.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+<div class="film-grain"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl border-b border-outline-variant/10">
+<div class="max-w-container-max mx-auto px-gutter py-unit w-full flex justify-between items-center">
+<div class="font-display-xl text-body-lg font-bold text-primary tracking-tighter">
+                MK
+            </div>
+<nav class="hidden md:flex items-center gap-8 font-label-mono text-label-mono">
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer hover:scale-105 duration-300" href="#">Work</a>
+<a class="text-primary font-bold border-b border-primary cursor-pointer hover:scale-105 duration-300" href="#">Ethos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer hover:scale-105 duration-300" href="#">Boxer</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer hover:scale-105 duration-300" href="#">Contact</a>
+</nav>
+<button class="md:hidden text-primary hover:scale-105 transition-transform duration-300 cursor-pointer magnetic-effect">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<button class="hidden md:block text-primary hover:scale-105 transition-transform duration-300 cursor-pointer magnetic-effect">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</header>
+<main class="relative w-full min-h-screen pt-32 pb-section-gap ring-grid max-w-container-max mx-auto px-gutter md:px-margin-desktop">
+<!-- Background Shader -->
+<div class="fixed inset-0 w-full h-full z-[-1] opacity-30 mix-blend-screen pointer-events-none">
+</div>
+<!-- Section 1: Hero Nature -->
+<section class="relative min-h-[80vh] flex flex-col justify-center gap-12 mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-10 md:col-start-2 z-10 text-center md:text-left">
+<p class="font-label-mono text-label-mono text-primary mb-6 animate-bloom uppercase tracking-widest">
+                        Sustainable Technology • Responsible Innovation • Human-Centered Design
+                    </p>
+<h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-surface mb-8 animate-bloom delay-100 leading-tight">
+                        Build for progress.<br/>
+<span class="text-on-surface-variant">Respect the world it lives in.</span>
+</h1>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center mt-12">
+<div class="md:col-span-5 md:col-start-2 z-10 animate-bloom delay-200">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-8 leading-relaxed">
+                        The intersection of high-performance engineering and organic sustainability isn't a compromise; it's an evolution. True strength in design mirrors nature—efficient, resilient, and inherently balanced. We craft digital experiences that leave an impact on the user, not a scar on the ecosystem.
+                    </p>
+<a class="magnetic-btn inline-block bg-primary-container text-surface font-label-mono text-label-mono px-8 py-4 border border-transparent hover:bg-transparent hover:text-primary hover:border-primary transition-all duration-300 uppercase tracking-wider group relative overflow-hidden" href="#">
+<span class="relative z-10">View Sustainability Manifesto</span>
+<div class="absolute inset-0 bg-surface transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-0"></div>
+</a>
+</div>
+<div class="md:col-span-6 relative h-[60vh] md:h-[80vh] animate-bloom delay-300 group">
+<div class="absolute inset-0 border border-outline-variant/30 transform translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0 z-0"></div>
+<div class="relative w-full h-full overflow-hidden bg-surface-container z-10">
+<img alt="" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105 scale-100 origin-center parallax-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA-TgFh2hAl7qA0EqUEGSK_chpiUbl6RRMdnbT2LG0mEEuUMekH08iCxJYHV5n_jOf7WqvIrMiovVdf2OV-pkOUSL8e8nyWSJ1eBvzi_idGkFn7Vj7E98lo41VJ_3LzJRAtDI1WDUldVERXeO-Kbn5K9eKHjbpdDsYkzDIG2KC3DvgwsdB1Kz4twgIpC5QxwXcNtjjcUts5VKqb1pXwiPY3EYGlFLxv2cg6HPPP8hKIrFm6m9GCESN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80 pointer-events-none"></div>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bloom delay-300 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center p-2 animate-[spin_10s_linear_infinite]">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'wght' 300;">south</span>
+</div>
+<span class="font-label-mono text-label-mono text-xs text-primary/50 uppercase">Explore</span>
+</div>
+</section>
+<!-- Section 2: Values List -->
+<section class="py-section-gap relative">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4 md:col-start-2">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8 sticky top-32">Core<br/><span class="text-primary">Values.</span></h2>
+</div>
+<div class="md:col-span-7">
+<div class="flex flex-col border-t border-outline-variant/30">
+<!-- Value Item -->
+<div class="group py-8 border-b border-outline-variant/30 flex flex-col md:flex-row md:items-baseline justify-between gap-4 hover:bg-surface-container-low transition-colors duration-300 px-4 -mx-4 cursor-crosshair relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<h3 class="font-headline-lg-mobile md:text-headline-md text-on-surface-variant group-hover:text-primary transition-colors duration-300 z-10 relative">Authenticity</h3>
+<p class="font-label-mono text-label-mono text-outline z-10 relative max-w-xs md:text-right">Code that speaks truth. No artificial bloat, only purposeful structure.</p>
+</div>
+<!-- Value Item -->
+<div class="group py-8 border-b border-outline-variant/30 flex flex-col md:flex-row md:items-baseline justify-between gap-4 hover:bg-surface-container-low transition-colors duration-300 px-4 -mx-4 cursor-crosshair relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<h3 class="font-headline-lg-mobile md:text-headline-md text-on-surface-variant group-hover:text-primary transition-colors duration-300 z-10 relative">Balance</h3>
+<p class="font-label-mono text-label-mono text-outline z-10 relative max-w-xs md:text-right">Aesthetic tension resolved through mathematical grid precision.</p>
+</div>
+<!-- Value Item -->
+<div class="group py-8 border-b border-outline-variant/30 flex flex-col md:flex-row md:items-baseline justify-between gap-4 hover:bg-surface-container-low transition-colors duration-300 px-4 -mx-4 cursor-crosshair relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<h3 class="font-headline-lg-mobile md:text-headline-md text-on-surface-variant group-hover:text-primary transition-colors duration-300 z-10 relative">Growth</h3>
+<p class="font-label-mono text-label-mono text-outline z-10 relative max-w-xs md:text-right">Systems designed to scale organically with raw performance intact.</p>
+</div>
+<!-- Value Item -->
+<div class="group py-8 border-b border-outline-variant/30 flex flex-col md:flex-row md:items-baseline justify-between gap-4 hover:bg-surface-container-low transition-colors duration-300 px-4 -mx-4 cursor-crosshair relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<h3 class="font-headline-lg-mobile md:text-headline-md text-on-surface-variant group-hover:text-primary transition-colors duration-300 z-10 relative">Impact</h3>
+<p class="font-label-mono text-label-mono text-outline z-10 relative max-w-xs md:text-right">Heavyweight solutions that strike hard but leave a light footprint.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Skills Constellation -->
+<section class="py-section-gap relative min-h-screen flex flex-col justify-center">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-12 relative z-20">
+<div class="md:col-span-10 md:col-start-2 text-center">
+<span class="font-label-mono text-label-mono text-primary mb-4 block tracking-widest uppercase">Skills</span>
+<h2 class="font-headline-lg-mobile md:text-headline-lg text-on-surface mb-6">Technical Constellation</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+                A kinetic network of core competencies, engineered for performance and precision.
+            </p>
+</div>
+</div>
+<div class="relative w-full max-w-6xl mx-auto rounded-2xl overflow-hidden border border-outline-variant/20 bg-surface-container-lowest/50 shadow-[0_0_40px_rgba(16,185,129,0.05)] group">
+<!-- Subtle emerald glow effect behind container -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-50 pointer-events-none"></div>
+<!-- STITCH_THREEJS_START:ANIMATION_16 class="w-full h-[600px] bg-transparent cursor-crosshair relative z-10 block" -->
+<div class="w-full h-[600px] bg-transparent cursor-crosshair relative z-10 block" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_16" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_16');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const container = document.getElementById('threejs-container');
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.z = 5;
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+const skills = [
+  { name: 'React', level: 0.9, color: '#10b981' },
+  { name: 'TypeScript', level: 0.85, color: '#10b981' },
+  { name: 'Node.js', level: 0.8, color: '#10b981' },
+  { name: 'Next.js', level: 0.9, color: '#10b981' },
+  { name: 'WebGL', level: 0.7, color: '#10b981' },
+  { name: 'Three.js', level: 0.75, color: '#10b981' },
+  { name: 'PostgreSQL', level: 0.8, color: '#10b981' },
+  { name: 'Tailwind', level: 0.95, color: '#10b981' }
+];
+
+const nodes = [];
+const nodeGroup = new THREE.Group();
+scene.add(nodeGroup);
+
+// Create nodes
+skills.forEach((skill, i) => {
+  const geometry = new THREE.IcosahedronGeometry(0.15, 1);
+  const material = new THREE.MeshPhongMaterial({
+    color: skill.color,
+    emissive: skill.color,
+    emissiveIntensity: 0.5,
+    transparent: true,
+    opacity: 0.8,
+    shininess: 100
+  });
+  
+  const mesh = new THREE.Mesh(geometry, material);
+  
+  // Random positioning in a sphere-like area
+  const angle = (i / skills.length) * Math.PI * 2;
+  const radius = 2.5 + Math.random() * 0.5;
+  mesh.position.x = Math.cos(angle) * radius;
+  mesh.position.y = Math.sin(angle) * radius;
+  mesh.position.z = (Math.random() - 0.5) * 2;
+  
+  mesh.userData = {
+    originalPos: mesh.position.clone(),
+    velocity: new THREE.Vector3((Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01)
+  };
+  
+  nodeGroup.add(mesh);
+  nodes.push(mesh);
+});
+
+// Create connections
+const lineMaterial = new THREE.LineBasicMaterial({ 
+  color: 0x10b981, 
+  transparent: true, 
+  opacity: 0.2 
+});
+
+const connectionLines = [];
+for (let i = 0; i < nodes.length; i++) {
+  for (let j = i + 1; j < nodes.length; j++) {
+    if (Math.random() > 0.4) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        nodes[i].position,
+        nodes[j].position
+      ]);
+      const line = new THREE.Line(geometry, lineMaterial);
+      scene.add(line);
+      connectionLines.push({ line, start: nodes[i], end: nodes[j] });
+    }
+  }
+}
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0x10b981, 1, 10);
+pointLight.position.set(2, 2, 2);
+scene.add(pointLight);
+
+const mouse = new THREE.Vector2();
+window.addEventListener('mousemove', (e) => {
+  const rect = container.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+});
+
+function animate(t) {
+  requestAnimationFrame(animate);
+  
+  nodeGroup.rotation.y += 0.002;
+  nodeGroup.rotation.x += 0.001;
+
+  nodes.forEach(node => {
+    // Subtle organic floating
+    node.position.add(node.userData.velocity);
+    
+    // Boundary check
+    if (node.position.distanceTo(node.userData.originalPos) > 0.5) {
+      node.userData.velocity.negate();
+    }
+    
+    // Mouse reaction
+    const mousePos = new THREE.Vector3(mouse.x * 4, mouse.y * 4, 0);
+    const dist = node.position.distanceTo(mousePos);
+    if (dist < 2) {
+      const dir = node.position.clone().sub(mousePos).normalize();
+      node.position.add(dir.multiplyScalar(0.02 * (1 - dist/2)));
+    }
+  });
+
+  // Update lines
+  connectionLines.forEach(conn => {
+    const positions = conn.line.geometry.attributes.position.array;
+    positions[0] = conn.start.position.x;
+    positions[1] = conn.start.position.y;
+    positions[2] = conn.start.position.z;
+    positions[3] = conn.end.position.x;
+    positions[4] = conn.end.position.y;
+    positions[5] = conn.end.position.z;
+    conn.line.geometry.attributes.position.needsUpdate = true;
+  });
+
+  renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+
+animate(0);
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_16 -->
+<!-- Floating Glassmorphic Labels overlayed on Three.js -->
+<div class="absolute inset-0 pointer-events-none z-20 overflow-hidden hidden md:block">
+<div class="absolute top-10 left-10 reveal-skill glass-card px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-mono text-xs text-on-surface uppercase">React</span>
+</div>
+<div class="absolute top-32 right-12 reveal-skill glass-card px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2 delay-100">
+<span class="w-2 h-2 rounded-full bg-primary/80"></span>
+<span class="font-label-mono text-xs text-on-surface uppercase">TypeScript</span>
+</div>
+<div class="absolute bottom-20 left-20 reveal-skill glass-card px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2 delay-200">
+<span class="w-2 h-2 rounded-full bg-primary/60"></span>
+<span class="font-label-mono text-xs text-on-surface uppercase">WebGL / Three.js</span>
+</div>
+<div class="absolute top-1/2 right-24 reveal-skill glass-card px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2 delay-300">
+<span class="w-2 h-2 rounded-full bg-primary/90"></span>
+<span class="font-label-mono text-xs text-on-surface uppercase">Node.js</span>
+</div>
+<div class="absolute bottom-32 right-1/4 reveal-skill glass-card px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2 delay-[400ms]">
+<span class="w-2 h-2 rounded-full bg-primary/70"></span>
+<span class="font-label-mono text-xs text-on-surface uppercase">PostgreSQL</span>
+</div>
+</div>
+<!-- Mobile list fallback/supplement -->
+<div class="md:hidden p-6 grid grid-cols-2 gap-4 border-t border-outline-variant/20 bg-surface-container-low/80 backdrop-blur-md relative z-20">
+<div class="font-label-mono text-xs text-on-surface flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>React</div>
+<div class="font-label-mono text-xs text-on-surface flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>TypeScript</div>
+<div class="font-label-mono text-xs text-on-surface flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Node.js</div>
+<div class="font-label-mono text-xs text-on-surface flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Next.js</div>
+<div class="font-label-mono text-xs text-on-surface flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>WebGL / Three.js</div>
+<div class="font-label-mono text-xs text-on-surface flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Tailwind</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface w-full py-section-gap border-t border-outline-variant/30 fade-in-on-scroll relative z-10">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-unit">
+<div class="font-display-xl text-body-md text-on-surface order-2 md:order-1 text-center md:text-left opacity-70">
+                © 2024 ENGINEER BUILDER BOXER. ENGINEERED FOR PERFORMANCE.
+            </div>
+<nav class="flex gap-6 font-label-mono text-label-mono order-1 md:order-2 mb-8 md:mb-0">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-wider" href="#">Github</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-wider" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-wider" href="#">Instagram</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-wider" href="#">Manifesto</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Simple parallax for image
+        document.addEventListener('scroll', () => {
+            const img = document.querySelector('.parallax-img');
+            if(img) {
+                const scrollY = window.scrollY;
+                const offset = img.closest('section').offsetTop;
+                if(scrollY > offset - window.innerHeight) {
+                    const yPos = (scrollY - offset) * 0.1;
+                    img.style.transform = `translateY(${yPos}px) scale(1.05)`;
+                }
+            }
+            
+            // Reveal skills on scroll
+            const reveals = document.querySelectorAll('.reveal-skill');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        });
+
+        // Initialize Three.js custom element logic manually if custom elements aren't natively handling the script tag src
+        // Since we are using <threejs-scene>, we'll simulate its behavior by evaluating the stored script if needed,
+        // but typically a wrapper script handles this custom element. We assume the system handles it.
+        
+    </script>
+</body></html>

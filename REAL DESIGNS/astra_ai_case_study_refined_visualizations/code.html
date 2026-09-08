@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASTRA AI - Case Study</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#203529",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-tint": "#4edea3",
+                        "background": "#131313",
+                        "surface": "#131313",
+                        "secondary-fixed": "#d0e9d6",
+                        "surface-container-highest": "#353534",
+                        "surface-dim": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary": "#2f3131",
+                        "on-primary": "#003824",
+                        "on-secondary-container": "#a3bbaa",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-error": "#690005",
+                        "on-primary-container": "#00422b",
+                        "primary-container": "#10b981",
+                        "tertiary": "#c6c6c7",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#4edea3",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed": "#0a2014",
+                        "inverse-on-surface": "#313030",
+                        "surface-bright": "#3a3939",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-surface": "#e5e2e1",
+                        "primary-fixed": "#6ffbbe",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#3c4a42",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed-dim": "#b4ccbb",
+                        "on-primary-fixed": "#002113",
+                        "secondary-container": "#364c3e",
+                        "on-background": "#e5e2e1",
+                        "tertiary-container": "#a2a3a3",
+                        "inverse-primary": "#006c49",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed-variant": "#364c3e",
+                        "surface-variant": "#353534",
+                        "on-tertiary-container": "#38393a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "outline": "#86948a",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "secondary": "#b4ccbb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "160px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "margin-mobile": "24px",
+                        "container-max": "1440px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "headline-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+        }
+        
+        .grid-lines {
+            background-image: 
+                linear-gradient(to right, rgba(26, 47, 35, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(26, 47, 35, 0.5) 1px, transparent 1px);
+            background-size: calc(100% / 12) 100px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-lines {
+                background-size: calc(100% / 4) 100px;
+            }
+        }
+
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        .glass-panel {
+            background: rgba(19, 19, 19, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .punchy-btn {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .punchy-btn:hover {
+            transform: scale(1.02);
+            background-color: transparent;
+            color: theme('colors.primary-container');
+            border-color: theme('colors.primary-container');
+        }
+
+        .repel-card {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.background');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.outline-variant');
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.primary-container');
+        }
+    </style>
+</head>
+<body class="antialiased relative min-h-screen flex flex-col">
+<div class="film-grain"></div>
+<!-- Top Navigation (Shared Component Shell) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-unit max-w-container-max mx-auto bg-surface/80 backdrop-blur-xl dark:bg-surface/80 border-b border-outline-variant/10">
+<a class="font-headline-md text-headline-md tracking-tighter font-bold text-primary dark:text-primary" href="#">BIOFLOW</a>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">ENGINEERING</a>
+<a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">BUILDS</a>
+<a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">THE RING</a>
+<a class="font-body-md text-body-md text-primary font-semibold border-b border-primary pb-1" href="#">EXPERIENCE</a>
+</div>
+<div class="flex gap-4 items-center">
+<button class="hidden md:block font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors">PROJECTS</button>
+<button class="bg-primary-container text-[#050505] font-label-mono text-label-mono px-6 py-3 border border-transparent punchy-btn">CONTACT</button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow pt-[100px] relative">
+<div class="absolute inset-0 grid-lines pointer-events-none z-[-1]"></div>
+<!-- Hero Section -->
+<section class="relative w-full h-[90vh] flex items-end pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="absolute inset-0 z-[-1]">
+<img class="w-full h-full object-cover filter grayscale opacity-40 hover:grayscale-0 transition-all duration-700" data-alt="A highly atmospheric, cinematic shot of a massive, dark server room or data center. Intense, structural beams of emerald green laser light cut through thick volumetric fog, illuminating the sleek, black racks. The lighting is moody and high-contrast, evoking a sense of raw, high-performance computing power and futuristic engineering. The aesthetic is gritty, minimal, and intensely focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtDRy4bHZnxv6cXSzynX2ZFNPKosBuvcVHXgoq2xefMe6yA0j37S93n1CVvsg7uG8eA6ZuQc0mY6v_c4NBbkAdib7AgcFTRyzBzfaRORBhZI2UqMjpI5WSeb38ii9RDivyM3Uz4MqkZJ-oLqRkQoEAGshFyTp193LO1mRiV6VPgRCyonYRX7vlEc2-mJBL0yb5MVRPxxOzxxt4M6ayh8fePhMSscPJvboq4nRd_6QlZ0yuFXh4TUH6"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+</div>
+<div class="z-10 w-full">
+<div class="font-label-mono text-label-mono text-primary mb-4 border border-primary px-3 py-1 inline-block">PROJECT_01</div>
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-on-surface mb-6 uppercase tracking-tighter">ASTRA AI</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl border-l-2 border-primary-container pl-6">
+                    High-Performance Distributed Inference Engine. Engineering raw compute power into calculated, structural movement.
+                </p>
+</div>
+</section>
+<!-- Overview Section (2-Column Grid) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- The Challenge -->
+<div class="md:col-span-5 md:col-start-2 border-t border-outline-variant pt-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">THE CHALLENGE</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                        Existing inference engines suffered from unpredictable latency spikes under heavy concurrent load. The objective was to design a distributed architecture capable of handling massive throughput with deterministic response times, akin to the precise, disciplined striking in professional boxing.
+                    </p>
+<div class="font-label-mono text-label-mono text-on-surface-variant flex gap-4">
+<span class="border border-outline-variant px-2 py-1">LATENCY</span>
+<span class="border border-outline-variant px-2 py-1">THROUGHPUT</span>
+</div>
+</div>
+<!-- The Solution -->
+<div class="md:col-span-5 md:col-start-8 border-t border-outline-variant pt-8 mt-12 md:mt-0 relative">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 text-primary-container">THE SOLUTION</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                        We engineered a custom sharding protocol combined with a highly optimized, low-level network stack. By ruthlessly eliminating bottlenecks and treating data flow like kinetic energy, we achieved unprecedented performance metrics.
+                    </p>
+<ul class="space-y-4">
+<li class="border-b border-outline-variant/30 pb-4 group hover:bg-surface-container-high transition-colors px-2">
+<span class="font-label-mono text-label-mono text-primary group-hover:text-primary-container">01</span>
+<span class="font-body-md text-body-md text-on-surface ml-4">Custom Rust-based networking layer</span>
+</li>
+<li class="border-b border-outline-variant/30 pb-4 group hover:bg-surface-container-high transition-colors px-2">
+<span class="font-label-mono text-label-mono text-primary group-hover:text-primary-container">02</span>
+<span class="font-body-md text-body-md text-on-surface ml-4">Dynamic load balancing algorithm</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Technical Specs Module -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop w-full relative bg-surface-container-lowest bg-background">
+<div class="max-w-container-max mx-auto bg-surface-container-lowest/50 backdrop-blur-2xl p-8 md:p-16 border border-outline-variant/30 border-t-4 border-t-primary-container relative overflow-hidden">
+<div class="flex items-center justify-between mb-12 border-b border-outline-variant pb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase">Technical Metrics</h3>
+<span class="material-symbols-outlined text-primary-container">memory</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12"><!-- Metric 1 -->
+<div class="relative group p-6 border border-outline-variant/20 bg-surface-container-low/30 hover:border-primary-container/50 transition-all duration-500 overflow-hidden">
+<div class="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-primary-container animate-[pulse_2s_infinite]"></div>
+</div>
+<div class="font-label-mono text-label-mono text-primary-container mb-4 tracking-widest uppercase">[ LATENCY_REDUCTION ]</div>
+<div class="font-display-xl text-headline-lg md:text-display-xl text-primary-container font-extrabold tracking-tighter mb-4">40%</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-mono text-[10px] text-on-surface-variant">
+<span>THRESHOLD_MIN</span>
+<span>OPTIMAL</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest relative">
+<div class="absolute top-0 left-0 h-full bg-primary-container shadow-[0_0_10px_#10b981] w-[40%]"></div>
+</div>
+<div class="font-label-mono text-[10px] text-primary-container/60">STATUS: CALIBRATED</div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="relative group p-6 border border-outline-variant/20 bg-surface-container-low/30 hover:border-primary-container/50 transition-all duration-500 overflow-hidden">
+<div class="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-primary-container animate-[pulse_3s_infinite]"></div>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-4 tracking-widest uppercase">[ ACTIVE_NODES ]</div>
+<div class="font-display-xl text-headline-lg md:text-display-xl text-on-surface font-extrabold tracking-tighter mb-4">2.4k</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-mono text-[10px] text-on-surface-variant">
+<span>LOAD_BALANCING</span>
+<span>80% CAP</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest relative">
+<div class="absolute top-0 left-0 h-full bg-primary-container shadow-[0_0_10px_#10b981] w-[80%]"></div>
+</div>
+<div class="font-label-mono text-[10px] text-primary-container/60">STATUS: OPERATIONAL</div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="relative group p-6 border border-outline-variant/20 bg-surface-container-low/30 hover:border-primary-container/50 transition-all duration-500 overflow-hidden">
+<div class="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-primary-container animate-[pulse_1.5s_infinite]"></div>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-4 tracking-widest uppercase">[ THROUGHPUT_RPS ]</div>
+<div class="font-display-xl text-headline-lg md:text-display-xl text-on-surface font-extrabold tracking-tighter mb-4">150k</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-mono text-[10px] text-on-surface-variant">
+<span>PEAK_FLOW</span>
+<span>95% UTIL</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest relative">
+<div class="absolute top-0 left-0 h-full bg-primary-container shadow-[0_0_10px_#10b981] w-[95%]"></div>
+</div>
+<div class="font-label-mono text-[10px] text-primary-container/60">STATUS: PEAK_PERFORMANCE</div>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Impact & Results (Interactive Repulsion Cards) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase">Impact</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter" id="repulsion-grid">
+<!-- Card 1 -->
+<div class="repel-card group relative aspect-[4/3] border border-outline-variant overflow-hidden cursor-crosshair bg-surface">
+<img class="absolute inset-0 w-full h-full object-cover filter grayscale opacity-50 group-hover:opacity-20 transition-opacity duration-500" data-alt="A gritty, high-contrast monochrome photograph of a boxer's hands heavily wrapped in tape, captured mid-impact against a heavy bag. Deep shadows, stark white highlights, intense focus on the texture of the tape and sweat. The image conveys raw power, discipline, and kinetic energy, aligning with the cinematic minimalism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6vxOGt9vL2wqhZJf_CQ3ZXEuZ8of8YEkqGq9fGip47yG5q-P0leFZjNT9cEkZlK249Xo6Sm4GC0dRPVlf_1vMDdH8V87eS82EiIQiRw7S2g7DNO2KD7E7HShWjYY1IzDmNBf8CHRGFUCgdfxx5kJXZCbOT3shj43O6R8yRG7LxXhJA8bpjElaybDHmsYruUhgi8QQHZleBamyQEmkY5YNTtxLcvi3YCKJzVwWsIQbFDlARPEe28TS"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-end glass-panel opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<h4 class="font-headline-md text-headline-md text-primary-container mb-2">Scale Architecture</h4>
+<p class="font-body-md text-body-md text-on-surface">Deployed across 5 global regions with sub-50ms sync.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="repel-card group relative aspect-[4/3] border border-outline-variant overflow-hidden cursor-crosshair bg-surface">
+<img class="absolute inset-0 w-full h-full object-cover filter grayscale opacity-50 group-hover:opacity-20 transition-opacity duration-500" data-alt="Abstract macro photography of intricate, geometric metallic structures reminiscent of high-end server cooling fins or heat sinks. Stark black and white contrast with a subtle, synthetic emerald green glow emanating from the deep crevices. Sharp lines, rigid architectural layout, conveying precision engineering and thermal dynamics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvibZfU1P7dUQbZxHMIHCP-FJzKRpbwmkxi0DlvqmYiYwGegGhnRfZixHugagBlVpb_xANq7lnaeEi3kRDcgFQ4NzQfGgyc6Tk_z-oUNUovAbK9hHkeUcDXrI7JVi90VpXfF73Ou-rhdZsF9iKApG8ItnjjpE_LvrArtdXPryVmyrPpWy4AveYTtvJ0Fd0K7Vrv3_fhMbnapwep7gqbt82k77Tg9ZHFvJKhzNitwdU1cZJfKInPER3"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-end glass-panel opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<h4 class="font-headline-md text-headline-md text-primary-container mb-2">Thermal Efficiency</h4>
+<p class="font-body-md text-body-md text-on-surface">Optimized workload distribution reduced overall cluster heat output.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Teaser -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop text-center border-t border-outline-variant/30 max-w-container-max mx-auto">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4">NEXT IN QUEUE</p>
+<h2 class="font-display-xl text-headline-lg md:text-display-xl text-on-surface hover:text-primary-container transition-colors cursor-pointer">BIOFLOW</h2>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-section-gap px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-end max-w-container-max mx-auto bg-background dark:bg-background border-t border-outline-variant/30">
+<div class="mb-8 md:mb-0">
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-4">©2024 BIOFLOW ARCHIVE — BUILT FOR PERFORMANCE</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary underline decoration-primary/50 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">NEXT PROJECT: ASTRA AI</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary underline decoration-primary/50 underline-offset-4 transition-all" href="#">TECHNICAL SPECS</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary underline decoration-primary/50 underline-offset-4 transition-all" href="#">CODEBASE</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary underline decoration-primary/50 underline-offset-4 transition-all" href="#">LEGAL</a>
+</div>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant">
+            SYS_STATUS: ONLINE
+        </div>
+</footer>
+<!-- Interactive Script for Friction/Repulsion -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.repel-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const deltaX = (x - centerX) / centerX;
+                    const deltaY = (y - centerY) / centerY;
+                    
+                    // Friction effect - pushing away from cursor
+                    card.style.transform = `perspective(1000px) rotateY(${deltaX * -5}deg) rotateX(${deltaY * 5}deg) translateZ(10px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
+                });
+            });
+        });
+    </script>
+</body></html>

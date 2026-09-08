@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Beyond Limits | Boxer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "secondary": "#b4ccbb",
+                        "on-tertiary": "#2f3131",
+                        "on-primary-fixed-variant": "#005236",
+                        "tertiary-fixed": "#e2e2e2",
+                        "primary-fixed-dim": "#4edea3",
+                        "inverse-on-surface": "#313030",
+                        "surface-container": "#201f1f",
+                        "on-secondary-container": "#a3bbaa",
+                        "on-secondary": "#203529",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#002113",
+                        "surface-tint": "#4edea3",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#364c3e",
+                        "outline-variant": "#3c4a42",
+                        "primary-container": "#10b981",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary": "#4edea3",
+                        "on-secondary-fixed": "#0a2014",
+                        "surface-dim": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary": "#c6c6c7",
+                        "secondary-fixed-dim": "#b4ccbb",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-background": "#e5e2e1",
+                        "inverse-primary": "#006c49",
+                        "surface-variant": "#353534",
+                        "on-primary-container": "#00422b",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "tertiary-container": "#a2a3a3",
+                        "background": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "on-primary": "#003824",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#d0e9d6",
+                        "surface-bright": "#3a3939",
+                        "outline": "#86948a",
+                        "on-tertiary-container": "#38393a",
+                        "secondary-container": "#364c3e",
+                        "on-surface-variant": "#bbcabf",
+                        "surface": "#131313",
+                        "primary-fixed": "#6ffbbe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "160px",
+                        "container-max": "1440px",
+                        "gutter": "32px",
+                        "margin-desktop": "80px",
+                        "unit": "8px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Sora"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "headline-md": ["Sora"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            position: relative;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .kinetic-text-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .kinetic-text {
+            display: inline-block;
+            animation: scrollLeft 20s linear infinite;
+            padding-right: 2rem;
+        }
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .grid-bg {
+            background-size: 100px 100px;
+            background-image:
+                linear-gradient(to right, rgba(26, 47, 35, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(26, 47, 35, 0.5) 1px, transparent 1px);
+        }
+        .desaturate-hover {
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+        .desaturate-hover:hover {
+            filter: grayscale(0%);
+        }
+        @keyframes system-flash {
+            0% { background-color: #e5e2e1; opacity: 1; mix-blend-mode: screen; }
+            10% { background-color: #4edea3; opacity: 0.8; mix-blend-mode: overlay; }
+            100% { background-color: transparent; opacity: 0; }
+        }
+        .flash-impact {
+            position: absolute;
+            inset: 0;
+            z-index: 40;
+            pointer-events: none;
+            animation: system-flash 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/50">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-unit max-w-container-max mx-auto">
+<a class="font-display-xl text-headline-md tracking-tighter text-primary" href="#">BM</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Work</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Ethos</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Boxer</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Contact</a>
+</div>
+<a class="hidden md:inline-flex bg-primary-container text-[#050505] px-6 py-2 font-label-mono text-label-mono uppercase tracking-wider hover:bg-transparent hover:text-primary hover:border hover:border-primary transition-all hover:scale-105 duration-150" href="#">Connect</a>
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+</button>
+</div>
+</nav>
+<!-- Side Navigation (Mobile) -->
+<aside class="md:hidden fixed inset-0 z-50 bg-surface-container-lowest transform -translate-x-full transition-transform duration-500 ease-in-out flex flex-col h-full w-full p-margin-mobile" id="mobile-nav">
+<div class="flex justify-between items-center mb-12">
+<span class="font-display-xl text-primary text-headline-md tracking-tighter">Beyond Limits</span>
+<button class="text-primary" id="close-nav">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-6 flex-grow">
+<a class="text-on-surface-variant hover:text-on-surface pl-4 font-headline-md text-headline-md hover:bg-secondary-container/20 py-4 transition-all duration-300 rounded flex items-center gap-4" href="#">
+<span class="material-symbols-outlined">code</span> Work
+             </a>
+<a class="text-on-surface-variant hover:text-on-surface pl-4 font-headline-md text-headline-md hover:bg-secondary-container/20 py-4 transition-all duration-300 rounded flex items-center gap-4" href="#">
+<span class="material-symbols-outlined">psychology</span> Ethos
+             </a>
+<a class="text-primary border-l-4 border-primary pl-4 font-headline-md text-headline-md bg-secondary-container/10 py-4 transition-all duration-300 rounded flex items-center gap-4" href="#">
+<span class="material-symbols-outlined">sports_mma</span> Boxer
+             </a>
+<a class="text-on-surface-variant hover:text-on-surface pl-4 font-headline-md text-headline-md hover:bg-secondary-container/20 py-4 transition-all duration-300 rounded flex items-center gap-4" href="#">
+<span class="material-symbols-outlined">mail</span> Contact
+             </a>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant/30">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4">Engineer | Builder | Boxer</p>
+<a class="inline-flex w-full justify-center bg-primary-container text-[#050505] px-6 py-4 font-label-mono text-label-mono uppercase tracking-wider" href="#">Get In Touch</a>
+</div>
+</aside>
+<main class="pt-24 md:pt-32">
+<!-- Hero Section -->
+<section class="relative h-[80vh] md:h-[90vh] w-full flex flex-col justify-end pb-12 overflow-hidden border-b border-[#1A2F23]/50">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover object-top opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGyCvON3XASLO8vH_x-3IfIvVMKGhneBN4I53Vd7H73X-N4WqgYu_Os_f2UKHHDCCSqBlsVLSLqOpk9-voUDb5TYnJOg-BZ9fCKEaWSCzUL_IAiym62UQmJXSjR1U9Q8QpbQEyn2UWyero-rTVtmj_XxlVMbzC7RbCVTB85kBbnx7CKGPJXXC-iiMQOLaps5_SkD43BxONW2hrUZo_fWh3h27XLZNaDGzQTpgAjQv26MdOmbVF7e3v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full mb-8">
+<div class="kinetic-text-wrap text-primary opacity-90">
+<div class="kinetic-text font-display-xl text-[80px] md:text-display-xl uppercase leading-none">
+                        DISCIPLINE OUTSIDE THE KEYBOARD  •  DISCIPLINE OUTSIDE THE KEYBOARD  • 
+                    </div>
+</div>
+</div>
+</section>
+<!-- Section 1: The Rhythm of Resilience -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid-bg relative overflow-hidden">
+<div class="flash-impact z-50"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative z-10">
+<div class="md:col-span-5 md:col-start-1 order-2 md:order-1 flex flex-col gap-8">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight duration-150 transition-transform active:scale-95">The Rhythm<br/><span class="text-primary">of Resilience</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Boxing is not merely violence; it is a profound metaphor for engineering. Both require meticulous preparation, unyielding focus, and the resilience to absorb impact and immediately calculate the next move.
+                    </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        In the ring, as in architecture, structure dictates outcome. Every movement is a deliberate execution of a deeply ingrained algorithm.
+                    </p>
+<div class="inline-flex mt-4">
+<span class="font-label-mono text-label-mono border border-primary text-primary px-4 py-2 uppercase tracking-widest">Weight Class: Lightweight</span>
+</div>
+</div>
+<div class="md:col-span-6 md:col-start-7 order-1 md:order-2 mb-12 md:mb-0">
+<div class="relative aspect-[3/4] md:aspect-square w-full bg-surface-container-low border border-outline-variant/30 overflow-hidden group active:opacity-90 transition-opacity duration-150">
+<img alt="" class="w-full h-full object-cover desaturate-hover opacity-80 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLKWuHItbM2feMT7_T4-8o3Bgj09r2ierrW-rG5Vr520R8FkpFRVtaVQ8phN5WpGdhIgo8mv4m8C4F264u1J-VbtDjoanCqZFA5pXl6lx-igrACfpmQnU7ETy5LbXR4bJt_p0iPWQqIlgM_HPhUTmZ1tu7qhg6TaK4wX39d63rlcyJc7h_MhbCbmlmGnlKEz9yg86NjHw9bAUdwtO868BWOJtMkQ_V3iU7ktDmEYg-i7hOvI9hNFne"/>
+<div class="absolute inset-0 border border-primary/20 m-4 pointer-events-none"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Precision in Motion -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-5 md:col-start-2 mb-12 md:mb-0">
+<div class="relative h-[60vh] md:h-full w-full overflow-hidden border border-outline-variant/30">
+<img alt="" class="w-full h-full object-cover desaturate-hover opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl_XX17zGDLuqCxOermijlawsVhqWTryiG_z5n_37Tgn8uU5kva_hOMLvLHmGE1zxP9EGtfrlMqONcNAaI9PUpL05Ee1l3KrR7jhH6QDL0f_2Gkh_w2gzYm_tGfiDtTVHk_RrPZ-5fvQT44kWnOJJVgZUZXVgrf-QHpeC3T6SjHEPlp6-5ravwZKGvolV3Zk5u8qNiYb9NhjmkO3wW9H0RlpbROevt2nh5YkjTYFo74Zbu1th18IP8"/>
+<div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-background to-transparent">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Precision in Motion</h3>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 md:col-start-8 flex flex-col justify-center">
+<div class="space-y-0">
+<!-- Principle 1 -->
+<div class="group border-b border-[#1A2F23]/50 py-8 relative overflow-hidden cursor-default transition-colors hover:border-primary/50 duration-150 active:bg-secondary-container/20">
+<div class="absolute inset-0 bg-[#1A2F23] opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-0"></div>
+<div class="relative z-10 flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-primary tracking-widest">01</span>
+<h4 class="font-headline-md text-headline-md text-on-surface uppercase">Rhythm</h4>
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Finding the cadence in chaos; dictating the pace of the exchange.</p>
+</div>
+</div>
+<!-- Principle 2 -->
+<div class="group border-b border-[#1A2F23]/50 py-8 relative overflow-hidden cursor-default transition-colors hover:border-primary/50 duration-150 active:bg-secondary-container/20">
+<div class="absolute inset-0 bg-[#1A2F23] opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-0"></div>
+<div class="relative z-10 flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-primary tracking-widest">02</span>
+<h4 class="font-headline-md text-headline-md text-on-surface uppercase">Impact</h4>
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Maximizing force through aligned geometry and flawless timing.</p>
+</div>
+</div>
+<!-- Principle 3 -->
+<div class="group border-b border-[#1A2F23]/50 py-8 relative overflow-hidden cursor-default transition-colors hover:border-primary/50 duration-150 active:bg-secondary-container/20">
+<div class="absolute inset-0 bg-[#1A2F23] opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-0"></div>
+<div class="relative z-10 flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-primary tracking-widest">03</span>
+<h4 class="font-headline-md text-headline-md text-on-surface uppercase">Control</h4>
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Emotional baseline management when under extreme duress.</p>
+</div>
+</div>
+<!-- Principle 4 -->
+<div class="group border-b border-[#1A2F23]/50 py-8 relative overflow-hidden cursor-default transition-colors hover:border-primary/50 duration-150 active:bg-secondary-container/20">
+<div class="absolute inset-0 bg-[#1A2F23] opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-0"></div>
+<div class="relative z-10 flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-primary tracking-widest">04</span>
+<h4 class="font-headline-md text-headline-md text-on-surface uppercase">Endurance</h4>
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">The capacity to sustain high-output cognitive and physical processing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-background border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-8 md:gap-0">
+<div class="font-display-xl text-on-surface-variant text-headline-md tracking-tighter">Beyond Limits</div>
+<div class="flex items-center gap-8">
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary hover:opacity-80 transition-all duration-300 uppercase tracking-widest" href="#">Github</a>
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary hover:opacity-80 transition-all duration-300 uppercase tracking-widest" href="#">LinkedIn</a>
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary hover:opacity-80 transition-all duration-300 uppercase tracking-widest" href="#">Instagram</a>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant/50">
+                © 2024 Beyond Limits. Engineered for Performance.
+            </div>
+</div>
+</footer>
+<script>
+        // Mobile Nav Toggle
+        const menuBtn = document.querySelector('nav button');
+        const closeBtn = document.getElementById('close-nav');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('-translate-x-full');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileNav.classList.add('-translate-x-full');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Journey - Tactical Record</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#b4ccbb",
+                      "error-container": "#93000a",
+                      "surface-container-lowest": "#0e0e0e",
+                      "tertiary": "#c6c6c7",
+                      "inverse-surface": "#e5e2e1",
+                      "tertiary-container": "#a2a3a3",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary-fixed-variant": "#364c3e",
+                      "surface-container-highest": "#353534",
+                      "outline": "#86948a",
+                      "secondary-fixed": "#d0e9d6",
+                      "on-secondary": "#203529",
+                      "inverse-on-surface": "#313030",
+                      "error": "#ffb4ab",
+                      "on-tertiary-container": "#38393a",
+                      "on-primary-fixed": "#002113",
+                      "on-tertiary": "#2f3131",
+                      "primary": "#4edea3",
+                      "surface-bright": "#3a3939",
+                      "surface-dim": "#131313",
+                      "primary-fixed": "#6ffbbe",
+                      "on-primary": "#003824",
+                      "secondary-fixed-dim": "#b4ccbb",
+                      "on-primary-container": "#00422b",
+                      "background": "#000000",
+                      "on-surface-variant": "#bbcabf",
+                      "surface": "#000000",
+                      "surface-variant": "#353534",
+                      "on-primary-fixed-variant": "#005236",
+                      "primary-fixed-dim": "#4edea3",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-secondary-fixed": "#0a2014",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-tint": "#4edea3",
+                      "outline-variant": "#3c4a42",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#a3bbaa",
+                      "secondary-container": "#364c3e",
+                      "surface-container-low": "#1c1b1b",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#10b981",
+                      "surface-container": "#201f1f",
+                      "on-background": "#e5e2e1",
+                      "inverse-primary": "#006c49"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "80px",
+                      "section-gap": "160px",
+                      "margin-mobile": "24px",
+                      "gutter": "32px",
+                      "container-max": "1440px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-xl": [
+                              "Sora"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-xl": [
+                              "120px",
+                              {
+                                      "lineHeight": "110px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #000;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.05), transparent);
+            animation: scan 8s linear infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            0% { top: -100px; }
+            100% { top: 100vh; }
+        }
+
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .timeline-line {
+            width: 2px;
+            background: linear-gradient(to bottom, #10b981 0%, rgba(16, 185, 129, 0.2) 100%);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .node-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 15px rgba(16, 185, 129, 0.8); }
+            50% { opacity: 0.5; transform: scale(0.9); box-shadow: 0 0 5px rgba(16, 185, 129, 0.4); }
+        }
+
+        .tech-border {
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(16,185,129,0.05) 100%);
+            position: relative;
+        }
+        
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 10px; height: 10px;
+            border-top: 2px solid #10b981;
+            border-left: 2px solid #10b981;
+        }
+        .tech-border::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid #10b981;
+            border-right: 2px solid #10b981;
+        }
+
+        .glitch-hover:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: #10b981;
+        }
+        
+        @keyframes glitch-skew {
+          0% { transform: skew(0deg); }
+          20% { transform: skew(-5deg); }
+          40% { transform: skew(5deg); }
+          60% { transform: skew(-2deg); }
+          80% { transform: skew(2deg); }
+          100% { transform: skew(0deg); }
+        }
+
+        .data-sweep-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+        
+        .data-sweep-line {
+            position: absolute;
+            top: -300px;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(to bottom, transparent, rgba(78, 222, 163, 0.8), rgba(78, 222, 163, 0.1));
+            animation: sweep-down 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes sweep-down {
+            0% { top: -300px; opacity: 0; }
+            20% { opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+        
+        .node-interactive {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container transition-all" style="--sweep-duration: 150ms;">
+<div class="film-grain"></div>
+<div class="scanline" style="animation-duration: 150ms;"></div>
+<!-- TopNav from JSON -->
+<nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/50 flex justify-between items-center px-margin-desktop py-4 mx-auto max-w-container-max">
+<div class="font-headline-md text-headline-md font-bold text-primary">FIGHT_CODE</div>
+<div class="hidden md:flex gap-8 nav-links">
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">STRENGTH</a>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">CODE</a>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-primary border-b-2 border-primary pb-1" href="#">RECORDS</a>
+<a class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">STATS</a>
+</div>
+<button class="font-label-mono text-label-mono uppercase tracking-widest bg-primary-container text-surface px-6 py-2 rounded-sm hover:scale-102 transition-transform font-bold">
+            CONTACT
+        </button>
+</nav>
+<main class="relative min-h-screen pt-[120px] pb-section-gap px-margin-desktop md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-section-gap relative">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<div class="md:col-span-8">
+<p class="font-label-mono text-label-mono text-primary mb-4">// TACTICAL RECORD_</p>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-6 uppercase">Journey</h1>
+<div class="h-[1px] w-full bg-outline-variant/50"></div>
+</div>
+<div class="md:col-span-4 pb-4 hidden md:block">
+<div class="font-label-mono text-label-mono text-on-surface-variant text-right">
+<p class="">STATUS: <span class="text-primary">ACTIVE</span></p>
+<p class="">VELOCITY: <span class="text-primary">OPTIMAL</span></p>
+<p class="">SYSTEM_UPTIME: 99.9%</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Timeline Section -->
+<div class="relative max-w-5xl mx-auto">
+<!-- Central Data Stream -->
+<div class="absolute left-0 md:left-1/2 top-0 bottom-0 timeline-line transform md:-translate-x-1/2 z-0 hidden md:block"></div>
+<div class="space-y-[120px] relative z-10">
+<!-- Entry 1: 2024 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-[80px] items-center relative group">
+<!-- Data Node -->
+<div class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full node-pulse z-20 hidden md:block border-2 border-black node-interactive" style="animation-duration: 150ms;"></div>
+<div class="md:text-right pr-0 md:pr-12">
+<div class="font-label-mono text-label-mono text-primary mb-2 opacity-80 group-hover:opacity-100 transition-opacity">LOG_ENTRY: 2024</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2">BioFlow</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4 border border-outline-variant/50 inline-block px-3 py-1">Principal Engineer</p>
+</div>
+<div class="tech-border p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]" style="transition-duration: 150ms;">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/30 pb-2">
+<span class="material-symbols-outlined text-primary text-sm">memory</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant">MODULE_ALPHA</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-6">Leading architecture for sustainable tech solutions. Orchestrating high-throughput data pipelines for biological modeling.</p>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-mono text-label-mono text-primary border border-primary/30 px-2 py-1 bg-primary/5">SYSTEM_ARCH</span>
+<span class="font-label-mono text-label-mono text-primary border border-primary/30 px-2 py-1 bg-primary/5">DATA_STREAM</span>
+</div>
+</div>
+</div>
+<!-- Entry 2: 2023 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-[80px] items-center relative group">
+<div class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full z-20 hidden md:block border-2 border-black transition-transform group-hover:scale-150 duration-300 node-interactive"></div>
+<div class="md:order-2 pl-0 md:pl-12">
+<div class="font-label-mono text-label-mono text-primary mb-2 opacity-80 group-hover:opacity-100 transition-opacity">LOG_ENTRY: 2023</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2">Astra AI</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4 border border-outline-variant/50 inline-block px-3 py-1">Senior Builder</p>
+</div>
+<div class="tech-border p-8 backdrop-blur-sm md:order-1 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] md:text-right" style="transition-duration: 150ms;">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/30 pb-2 md:justify-end">
+<span class="material-symbols-outlined text-primary text-sm">hub</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant">MODULE_BETA</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-6">Architecting distributed inference engines. Scaled model deployment infrastructure to handle massive concurrent requests.</p>
+<div class="flex flex-wrap gap-2 md:justify-end">
+<span class="font-label-mono text-label-mono text-primary border border-primary/30 px-2 py-1 bg-primary/5">DISTRIBUTED_SYS</span>
+<span class="font-label-mono text-label-mono text-primary border border-primary/30 px-2 py-1 bg-primary/5">INFERENCE_ENG</span>
+</div>
+</div>
+</div>
+<!-- Entry 3: 2022 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-[80px] items-center relative group">
+<div class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full z-20 hidden md:block border-2 border-black transition-transform group-hover:scale-150 duration-300 node-interactive"></div>
+<div class="md:text-right pr-0 md:pr-12">
+<div class="font-label-mono text-label-mono text-primary mb-2 opacity-80 group-hover:opacity-100 transition-opacity">LOG_ENTRY: 2022</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2">FighterCode</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4 border border-outline-variant/50 inline-block px-3 py-1">Heavyweight Engineering</p>
+</div>
+<div class="tech-border p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]" style="transition-duration: 150ms;">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/30 pb-2">
+<span class="material-symbols-outlined text-primary text-sm">terminal</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant">MODULE_GAMMA</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-6">Built high-velocity systems for combat sports analytics. Real-time telemetry processing and strike impact modeling.</p>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-mono text-label-mono text-primary border border-primary/30 px-2 py-1 bg-primary/5">TELEMETRY</span>
+<span class="font-label-mono text-label-mono text-primary border border-primary/30 px-2 py-1 bg-primary/5">REAL_TIME</span>
+</div>
+</div>
+</div>
+<!-- Entry 4: 2021 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-[80px] items-center relative group pb-12">
+<div class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full z-20 hidden md:block border-2 border-black opacity-50 node-interactive hover:opacity-100 transition-opacity"></div>
+<div class="md:order-2 pl-0 md:pl-12">
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-2">LOG_ENTRY: 2021</div>
+<h2 class="font-headline-md text-headline-md mb-2 text-on-surface-variant">Open-Source</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant/50 mb-4 inline-block px-3 py-1 border border-outline-variant/30">Core Contributor</p>
+</div>
+<div class="border border-outline-variant/30 p-8 md:order-1 md:text-right opacity-70">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/30 pb-2 md:justify-end">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">commit</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant/50">MODULE_DELTA</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Core Contributor to Open-Source Quantum Frameworks. Foundational work in quantum state simulation.</p>
+<div class="flex flex-wrap gap-2 md:justify-end opacity-50">
+<span class="font-label-mono text-label-mono text-on-surface-variant border border-outline-variant/50 px-2 py-1">QUANTUM_SIM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from JSON -->
+<footer class="w-full border-t border-outline-variant/50 bg-surface flex flex-col md:flex-row justify-between items-center px-margin-desktop py-8 max-w-container-max mx-auto">
+<div class="font-label-mono text-primary mb-4 md:mb-0">
+            SYSTEM_STATUS: OPERATIONAL // ©2024 ENGINE_CORE
+        </div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 font-label-mono text-label-mono text-on-surface-variant">
+<span class="hover:text-primary transition-colors cursor-default">LATENCY: 24MS</span>
+<span class="hover:text-primary transition-colors cursor-default">ENCRYPTION: AES-256</span>
+<span class="hover:text-primary transition-colors cursor-default">UPTIME: 99.9%</span>
+</div>
+</footer>
+<script>
+        // Data sweep transition effect
+        function triggerSweep() {
+            const container = document.createElement('div');
+            container.className = 'data-sweep-container';
+            const line = document.createElement('div');
+            line.className = 'data-sweep-line';
+            container.appendChild(line);
+            document.body.appendChild(container);
+            
+            setTimeout(() => {
+                container.remove();
+            }, 600);
+        }
+
+        // Attach sweep to navigation and timeline nodes
+        document.querySelectorAll('.nav-links a, .node-interactive').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (el.tagName === 'A') e.preventDefault();
+                triggerSweep();
+                
+                if (el.tagName === 'A' && el.getAttribute('href') !== '#') {
+                    setTimeout(() => {
+                        window.location = el.getAttribute('href');
+                    }, 300);
+                }
+            });
+        });
+
+        // Simple repulsion physics for nodes on hover
+        document.querySelectorAll('.group').forEach(group => {
+            const node = group.querySelector('.w-4.h-4.bg-primary');
+            if (node) {
+                group.addEventListener('mousemove', (e) => {
+                    const rect = group.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    // Push node away slightly
+                    node.style.transform = `translate(${x * -0.05}px, -50%) scale(1.2)`;
+                });
+
+                group.addEventListener('mouseleave', () => {
+                     node.style.transform = `translate(-50%, -50%) scale(1)`;
+                });
+            }
+        });
+    </script>
+
+
+</body></html>

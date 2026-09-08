@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Terminal | Beyond Limits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#4edea3",
+                      "secondary-fixed": "#d0e9d6",
+                      "surface": "#131313",
+                      "on-secondary-fixed-variant": "#364c3e",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-secondary-fixed": "#0a2014",
+                      "secondary": "#b4ccbb",
+                      "primary-fixed": "#6ffbbe",
+                      "surface-container-lowest": "#0e0e0e",
+                      "tertiary": "#c6c6c7",
+                      "inverse-surface": "#e5e2e1",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#4edea3",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#bbcabf",
+                      "on-secondary-container": "#a3bbaa",
+                      "surface-container-high": "#2a2a2a",
+                      "primary-container": "#10b981",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-primary-fixed": "#002113",
+                      "tertiary-fixed": "#e2e2e2",
+                      "background": "#131313",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-error-container": "#ffdad6",
+                      "secondary-container": "#364c3e",
+                      "surface-container": "#201f1f",
+                      "on-tertiary-container": "#38393a",
+                      "outline-variant": "#3c4a42",
+                      "on-secondary": "#203529",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary": "#003824",
+                      "surface-bright": "#3a3939",
+                      "on-primary-fixed-variant": "#005236",
+                      "inverse-on-surface": "#313030",
+                      "surface-variant": "#353534",
+                      "outline": "#86948a",
+                      "on-background": "#e5e2e1",
+                      "tertiary-container": "#a2a3a3",
+                      "secondary-fixed-dim": "#b4ccbb",
+                      "surface-dim": "#131313",
+                      "inverse-primary": "#006c49",
+                      "on-tertiary": "#2f3131",
+                      "primary": "#4edea3",
+                      "on-error": "#690005",
+                      "on-primary-container": "#00422b",
+                      "on-surface": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "32px",
+                      "container-max": "1440px",
+                      "margin-desktop": "80px",
+                      "section-gap": "160px",
+                      "margin-mobile": "24px"
+              },
+              "fontFamily": {
+                      "display-xl": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "display-xl": [
+                              "120px",
+                              {
+                                      "lineHeight": "110px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Cinematic Minimalism Additions */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle Film Grain */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* Boxing Ring Grid Lines */
+        .ring-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(26, 47, 35, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(26, 47, 35, 0.5) 1px, transparent 1px);
+            background-size: calc(100% / 12) 100%, 100% 160px;
+        }
+        
+        @media (max-width: 768px) {
+             .ring-grid {
+                 background-size: calc(100% / 4) 100%, 100% 160px;
+             }
+        }
+
+        /* Scanner Line Animation */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: theme('colors.primary');
+            opacity: 0.5;
+            box-shadow: 0 0 10px theme('colors.primary'), 0 0 20px theme('colors.primary');
+            animation: scan 4s linear infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            5% { opacity: 0.5; }
+            95% { opacity: 0.5; }
+            100% { top: 100%; opacity: 0; }
+        }
+        
+        /* Terminal Blinking Cursor */
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Input Styling (Terminal style) */
+        .terminal-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid theme('colors.outline-variant');
+            color: theme('colors.primary');
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.2s ease;
+        }
+        
+        .terminal-input:focus {
+            outline: none;
+            border-bottom: 1px solid theme('colors.primary');
+            box-shadow: 0 1px 0 theme('colors.primary');
+        }
+        
+        /* Button Tactical Hover */
+        .tactical-btn {
+            background-color: theme('colors.primary-container');
+            color: #050505;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .tactical-btn:hover {
+            background-color: transparent;
+            color: theme('colors.primary');
+            border: 1px solid theme('colors.primary');
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+        
+        .tactical-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Bit-Rate Flicker Effect */
+        .bit-rate-flicker {
+            animation: flicker 0.15s infinite;
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 1; }
+            20% { opacity: 0.7; }
+            40% { opacity: 1; }
+            60% { opacity: 0.4; }
+            80% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Audio Frequency Bars */
+        .audio-bar {
+            width: 3px;
+            background-color: theme('colors.primary-container');
+            display: inline-block;
+            margin: 0 1px;
+            animation: equalize 1s infinite;
+            transform-origin: bottom;
+        }
+
+        .audio-bar:nth-child(1) { animation-duration: 0.8s; }
+        .audio-bar:nth-child(2) { animation-duration: 0.5s; animation-delay: 0.2s; }
+        .audio-bar:nth-child(3) { animation-duration: 1.2s; animation-delay: 0.1s; }
+        .audio-bar:nth-child(4) { animation-duration: 0.9s; animation-delay: 0.4s; }
+        .audio-bar:nth-child(5) { animation-duration: 0.6s; animation-delay: 0.3s; }
+        .audio-bar:nth-child(6) { animation-duration: 1.1s; animation-delay: 0.5s; }
+        .audio-bar:nth-child(7) { animation-duration: 0.7s; animation-delay: 0.1s; }
+        .audio-bar:nth-child(8) { animation-duration: 0.9s; animation-delay: 0.3s; }
+        .audio-bar:nth-child(9) { animation-duration: 0.5s; animation-delay: 0.2s; }
+        .audio-bar:nth-child(10) { animation-duration: 1.0s; animation-delay: 0.4s; }
+
+        @keyframes equalize {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1); }
+        }
+
+        /* Audio Ping Micro-label */
+        .audio-ping {
+            opacity: 0;
+            color: theme('colors.primary-container');
+            font-size: 8px;
+            transform: translateY(-5px);
+            transition: all 0.15s ease-out;
+        }
+
+        .audio-ping.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+<style class="">
+        /* Ghost Caret and Kinetic Pulse */
+        .terminal-input:focus {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15), inset 0 0 5px rgba(16, 185, 129, 0.05);
+            animation: input-pulse 2s infinite ease-in-out;
+            border-color: theme('colors.primary-container');
+        }
+
+        @keyframes input-pulse {
+            0%, 100% { border-color: theme('colors.primary-container'); }
+            50% { border-color: theme('colors.primary-container'); box-shadow: 0 0 20px rgba(16, 185, 129, 0.25); }
+        }
+
+        /* Digital Glitch Flicker on Interaction */
+        .group\/input:active {
+            animation: glitch-flicker 0.2s ease-in-out;
+        }
+
+        @keyframes glitch-flicker {
+            0% { opacity: 1; transform: translateX(0); }
+            20% { opacity: 0.8; transform: translateX(-1px); }
+            40% { opacity: 1; transform: translateX(1px); }
+            60% { opacity: 0.9; transform: translateX(-1px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Bit-by-bit text appearance simulation */
+        .terminal-input {
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 2px rgba(16, 185, 129, 0.3);
+            color: theme('colors.primary-container');
+        }
+
+        /* Ghost Caret Simulation */
+        .terminal-input::placeholder {
+            animation: caret-blink 1.2s infinite step-end;
+            color: theme('colors.primary-container');
+            opacity: 0.6;
+        }
+
+        @keyframes caret-blink {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0; }
+        }
+
+        /* High-Velocity Jitter Animation */
+        .glitch-jitter {
+            animation: jitter-anim 0.1s infinite;
+            display: inline-block;
+        }
+
+        @keyframes jitter-anim {
+            0% { transform: translate(0, 0) skew(0deg); }
+            25% { transform: translate(-2px, 1px) skew(1deg); }
+            50% { transform: translate(2px, -1px) skew(-2deg); }
+            75% { transform: translate(-1px, 2px) skew(1deg); }
+            100% { transform: translate(1px, -2px) skew(-1deg); }
+        }
+    </style></head>
+<body class="antialiased font-body-md text-body-md">
+<!-- System Flash Overlay -->
+<div class="fixed inset-0 bg-primary-container z-[10000] pointer-events-none opacity-0 transition-opacity duration-150 mix-blend-screen" id="system-flash"></div>
+<!-- Ambient Additions -->
+<div class="film-grain"></div>
+<div class="ring-grid"></div>
+<!-- Top Nav Bar Shell (Suppressed contextually if needed, but keeping standard layout) -->
+<nav class="fixed top-0 w-full bg-surface/80 backdrop-blur-xl border-b border-outline-variant/50 flex justify-between items-center px-margin-desktop py-4 mx-auto max-w-container-max z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary-container">
+            FIGHT_CODE
+        </div>
+<div class="hidden md:flex space-x-gutter">
+<a class="flash-trigger font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary-container transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">STRENGTH</a>
+<a class="flash-trigger font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary-container transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">CODE</a>
+<a class="flash-trigger font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary-container transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">RECORDS</a>
+<a class="flash-trigger font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant hover:text-primary-container transition-colors hover:scale-102 hover:bg-secondary-container/10 transition-transform" href="#">STATS</a>
+</div>
+<a class="flash-trigger font-label-mono text-label-mono uppercase tracking-widest text-primary-container border-b-2 border-primary-container pb-1 active:scale-95 transition-all duration-150" href="#">CONTACT</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="min-h-screen pt-[120px] pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col items-center justify-center relative pt-24 md:pt-[120px]">
+<!-- Hero Section -->
+<header class="w-full text-center md:mb-32 relative mb-8 flex flex-col items-center">
+<!-- Technical Meta Data -->
+<div class="absolute top-0 left-0 font-label-mono text-label-mono text-outline-variant opacity-50 hidden md:block glitch-target">
+                LOG_ENTRY: 2024<br/>
+                SEQ: 8901.AX
+            </div>
+<div class="absolute top-0 right-0 font-label-mono text-label-mono text-outline-variant opacity-50 text-right hidden md:block glitch-target">
+                TERMINAL_ID: BL-01<br/>
+                STATUS: STANDBY
+            </div>
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-on-surface tracking-tighter uppercase relative inline-block overflow-hidden">
+                CONNECT
+                <div class="scanline"></div>
+</h1>
+<p class="mt-8 font-label-mono text-label-mono text-primary-container tracking-widest flex flex-col items-center gap-2">
+<span>[ INIT SECURE CHANNEL ]</span>
+<span class="audio-ping">[ SYNC_PULSE ]</span>
+</p>
+<div class="mt-4 w-full max-w-md mx-auto space-y-2 transition-all duration-150">
+<div class="flex justify-between items-end">
+<span class="font-label-mono text-label-mono text-primary-container uppercase tracking-widest">[ UPLINK_STATUS: SYNCHRONIZING ]</span>
+<span class="font-label-mono text-label-mono text-primary-container opacity-50">65%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-low relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary-container w-[65%] animate-pulse transition-all duration-150">
+<div class="scanline opacity-50"></div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-label-mono text-on-surface-variant text-[10px] uppercase tracking-tighter animate-pulse">[ BIT_RATE: <span class="bit-rate-flicker glitch-target">1.2 GB/S</span> ]</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant text-[10px] uppercase tracking-tighter">EST_TIME: <span class="bit-rate-flicker glitch-target">0.4S</span></span>
+</div>
+</div>
+</header>
+<!-- Terminal Module -->
+<section class="w-full max-w-3xl relative">
+<!-- Glassmorphic Terminal Container -->
+<div class="border border-outline-variant/30 bg-surface-container/40 backdrop-blur-md p-6 md:p-12 relative overflow-hidden group hover:border-primary-container/50 transition-colors active:scale-[0.995] duration-150 px-margin-mobile py-8"><div class="scanline opacity-20" style="animation-duration: 8s; animation-delay: -2s;"></div>
+<div class="scanline"></div>
+<!-- Terminal Header / Status -->
+<div class="flex justify-between items-start border-b border-outline-variant/50 pb-4 mb-8 flex-col md:flex-row gap-4">
+<div class="flex flex-col space-y-2">
+<span class="font-label-mono text-label-mono text-outline animate-pulse glitch-target">SYSTEM_AUTH: VERIFIED</span>
+<span class="font-label-mono text-label-mono text-primary-container glitch-target">ENCRYPTION: ACTIVE (AES-256)</span>
+</div>
+<!-- Spectral Audio Visualizer -->
+<div class="flex flex-col space-y-2 md:items-end w-full md:w-auto">
+<div class="font-label-mono text-[10px] text-outline-variant uppercase mb-1 w-full text-left md:text-right">SPECTRAL_AUDIO</div>
+<div class="flex items-end h-4 gap-[1px]">
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+<div class="audio-bar h-4"></div>
+</div>
+<span class="font-label-mono text-[10px] text-primary-container uppercase mt-1 w-full text-left md:text-right">[ SYNC_ACTV ]</span>
+</div>
+</div>
+<!-- CLI Form -->
+<form action="#" class="space-y-8 font-label-mono text-label-mono" method="POST">
+<!-- Input: Name -->
+<div class="flex flex-col md:flex-row md:items-center group/input relative">
+<label class="w-32 text-on-surface-variant mb-2 md:mb-0 shrink-0" for="cli-name">SYS_IN: NAME</label>
+<div class="w-full relative">
+<input autocomplete="off" class="terminal-input w-full p-2 caret-emerald interactive-input" id="cli-name" name="name" placeholder="_" required="" spellcheck="false" type="text"/>
+<span class="audio-ping absolute right-2 top-2">[ KEY_STROKE ]</span>
+</div>
+</div>
+<!-- Input: Email -->
+<div class="flex flex-col md:flex-row md:items-center group/input relative">
+<label class="w-32 text-on-surface-variant mb-2 md:mb-0 shrink-0" for="cli-email">SYS_IN: EMAIL</label>
+<div class="w-full relative">
+<input autocomplete="off" class="terminal-input w-full p-2 caret-emerald interactive-input" id="cli-email" name="email" placeholder="_" required="" spellcheck="false" type="email"/>
+<span class="audio-ping absolute right-2 top-2">[ KEY_STROKE ]</span>
+</div>
+</div>
+<!-- Input: Message -->
+<div class="flex flex-col md:flex-row items-start group/input pt-4 relative">
+<label class="w-32 text-on-surface-variant mb-2 md:mb-0 shrink-0 mt-2" for="cli-message">SYS_IN: MESSAGE</label>
+<div class="w-full relative">
+<textarea class="terminal-input w-full p-2 resize-none caret-emerald interactive-input" id="cli-message" name="message" placeholder="_" required="" rows="4" spellcheck="false"></textarea>
+<span class="audio-ping absolute right-2 bottom-2">[ DATA_STREAM ]</span>
+</div>
+</div>
+<!-- Submit Action -->
+<div class="pt-8 border-t border-outline-variant/30 flex justify-end relative">
+<button class="flash-trigger tactical-btn px-8 py-4 font-label-mono text-label-mono uppercase tracking-widest flex items-center gap-4 duration-150 w-full justify-center md:w-auto active:bg-primary-container" type="submit">
+                            TRANSMIT_DATA
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
+                                arrow_forward
+                            </span>
+</button>
+<span class="audio-ping absolute right-1/2 translate-x-1/2 -top-4 md:right-0 md:translate-x-0">[ EXECUTE_CMD ]</span>
+</div>
+</form>
+</div>
+<!-- Technical Decorators -->
+<div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-primary-container/40 hidden md:block"></div>
+<div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-primary-container/40 hidden md:block"></div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full border-t border-outline-variant/50 bg-surface flex flex-col md:flex-row justify-between items-center px-margin-desktop py-8 max-w-container-max mx-auto gap-4 md:gap-0">
+<div class="font-label-mono text-label-mono text-primary-container mb-4 md:mb-0 glitch-target text-center md:text-left">
+            SYSTEM_STATUS: OPERATIONAL // ©2024 ENGINE_CORE
+        </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-x-gutter gap-y-2">
+<span class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary-container transition-colors">LATENCY: <span class="bit-rate-flicker glitch-target">24MS</span></span>
+<span class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary-container transition-colors">ENCRYPTION: <span class="bit-rate-flicker glitch-target">AES-256</span></span>
+<span class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary-container transition-colors">UPTIME: <span class="bit-rate-flicker glitch-target">99.9%</span></span>
+</div>
+</footer>
+<script>
+        // Simple script to handle terminal input focus effects and audio pings
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.interactive-input');
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const pings = document.querySelectorAll('.audio-ping');
+            
+            // Randomly trigger stray audio pings
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomPing = pings[Math.floor(Math.random() * pings.length)];
+                    randomPing.classList.add('active');
+                    setTimeout(() => randomPing.classList.remove('active'), 150);
+                }
+            }, 2000);
+
+            inputs.forEach(input => {
+                const label = input.closest('.group\\/input').querySelector('label');
+                const ping = input.nextElementSibling;
+
+                input.addEventListener('focus', function() {
+                    label.classList.add('text-primary-container');
+                    label.classList.remove('text-on-surface-variant');
+                });
+                
+                input.addEventListener('blur', function() {
+                    label.classList.remove('text-primary-container');
+                    label.classList.add('text-on-surface-variant');
+                });
+
+                // Trigger ping on input
+                input.addEventListener('input', () => {
+                    if (ping && ping.classList.contains('audio-ping')) {
+                        ping.classList.add('active');
+                        setTimeout(() => ping.classList.remove('active'), 150);
+                    }
+                });
+            });
+
+            // System Flash & Button Ping Integration
+            const flashTriggers = document.querySelectorAll('.flash-trigger');
+            const systemFlash = document.getElementById('system-flash');
+
+            if (submitBtn) {
+                 submitBtn.addEventListener('mousedown', () => {
+                     const ping = submitBtn.nextElementSibling;
+                     if(ping && ping.classList.contains('audio-ping')) {
+                         ping.classList.add('active');
+                         setTimeout(() => ping.classList.remove('active'), 150);
+                     }
+                 });
+            }
+
+            flashTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    if (trigger.tagName === 'BUTTON') {
+                        const form = trigger.closest('form');
+                        if (form && !form.checkValidity()) return;
+                    }
+                    
+                    e.preventDefault();
+                    
+                    systemFlash.classList.remove('opacity-0');
+                    systemFlash.classList.add('opacity-100');
+                    
+                    setTimeout(() => {
+                        systemFlash.classList.remove('opacity-100');
+                        systemFlash.classList.add('opacity-0');
+                    }, 150);
+                });
+            });
+            
+            // Telemetry Glitch Engine
+            const glitchChars = '!<>-_\\/[]{}—=+*^?#________';
+            const targets = document.querySelectorAll('.glitch-target');
+
+            targets.forEach(target => {
+                // Save original HTML content
+                target.dataset.original = target.innerHTML;
+            });
+
+            function randomGlitch() {
+                targets.forEach(target => {
+                    // Randomly decide to glitch this element
+                    if (Math.random() < 0.15) { // 15% chance per tick
+                        target.classList.add('glitch-jitter');
+                        
+                        // Scramble text (assuming no child elements for simplicity in these specific targets, or simple inner text)
+                        const orig = target.dataset.original;
+                        // Strip basic HTML if any before scrambling, or just scramble raw text to be safe
+                        let scrambled = '';
+                        // Simple check: if it contains HTML, just don't scramble text to avoid breaking structure, only apply jitter
+                        if (orig.indexOf('<') === -1) {
+                            for(let i = 0; i < orig.length; i++) {
+                                if (orig[i] === ' ' || orig[i] === '\n') { scrambled += orig[i]; continue; }
+                                if (Math.random() < 0.3) {
+                                    scrambled += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                                } else {
+                                    scrambled += orig[i];
+                                }
+                            }
+                            target.innerHTML = scrambled;
+                        }
+                        
+                        // Clear glitch after 50-100ms
+                        setTimeout(() => {
+                            target.classList.remove('glitch-jitter');
+                            target.innerHTML = target.dataset.original;
+                        }, 50 + Math.random() * 50);
+                    }
+                });
+                
+                // Schedule next tick randomly between 100ms and 1500ms
+                setTimeout(randomGlitch, 100 + Math.random() * 1400);
+            }
+
+            // Start loop
+            setTimeout(randomGlitch, 1000);
+        });
+    </script>
+</body></html>
