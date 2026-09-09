@@ -1,17 +1,6 @@
 import type { Metadata } from "next";
 import { GalleryGrid } from "@/components/gallery-grid";
-import { getGalleryEntries } from "@/content/gallery";
-
-export const metadata: Metadata = {
-  title: "Gallery",
-  description: "A visual journal of events, technology, projects, and life through the lens of Kamwanga Rahiim and RaheemLabs.",
-};
-
-export default function Gallery() {
-  const entries = getGalleryEntries();
-  return <main id="main" className="page-shell gallery-page">
-    <header className="gallery-hero"><div><p className="eyebrow">Visual journal / Archive 001</p><h1 className="display">Moments worth<br /><em>keeping.</em></h1></div><p>Events, ideas, builds, people, and the life around the work—collected as the journey unfolds.</p><span aria-hidden="true">{String(entries.length).padStart(2, "0")} FRAMES</span></header>
-    <section className="gallery-index"><span>ALL MOMENTS</span><span>EVENTS</span><span>BUILDING</span><span>LIFE</span><span>RAHEEMLABS</span></section>
-    <section className="gallery-feed section"><div className="gallery-feed__head"><p className="eyebrow">Current collection</p><p>New moments will join this archive over time.</p></div><GalleryGrid entries={entries} /></section>
-  </main>;
-}
+import { getGalleryEntries } from "@/lib/gallery-store";
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = { title: "Gallery", description: "Events, talks, projects, and moments documented by Kamwanga Rahiim and RaheemLabs." };
+export default async function Gallery() { const entries = await getGalleryEntries(); return <main id="main" className="page-shell gallery-page"><header className="gallery-hero gallery-hero--journal"><div><p className="eyebrow">Field notes / Visual journal</p><h1 className="display">Life, through<br /><em>my lens.</em></h1></div><p>A growing record of events I attend, talks I give, things I build, and moments worth remembering.</p><span aria-hidden="true">{String(entries.length).padStart(2, "0")} STORIES</span></header><GalleryGrid entries={entries} /></main>; }

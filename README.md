@@ -12,7 +12,7 @@ The site presents verified project stories, RaheemLabs, and boxing as a personal
 - React
 - TypeScript in strict mode
 - CSS with progressive enhancement and reduced-motion support
-- Structured local content that can be migrated to a headless CMS later
+- Vercel Blob-backed gallery publishing with a private mobile studio
 
 ## Local development
 
@@ -42,6 +42,15 @@ Content lives outside page components:
 - `src/content/journal.ts` contains future articles, videos, podcasts, boxing notes, and event entries.
 - `src/content/profile.ts` contains public identity and contact details.
 - `src/content/types.ts` defines the publishing contracts.
+
+### Publish gallery stories from a phone
+
+1. Connect a Blob store to the project in the Vercel dashboard. Vercel adds `BLOB_READ_WRITE_TOKEN` automatically.
+2. Add a strong `GALLERY_ADMIN_PASSWORD` and a random `GALLERY_SESSION_SECRET` of at least 24 characters to the project environment variables.
+3. Redeploy, then open `/gallery/manage` on your phone and sign in.
+4. Choose an image, add its title, short story, type, date, and optional location, then publish.
+
+The studio accepts JPG, PNG, WebP, and AVIF images up to 10 MB. Its session cookie is HTTP-only, same-site, and secure in production. The management route and APIs are excluded from search indexing. Without the three gallery variables, the public page safely shows the bundled starter collection and the studio displays setup instructions instead of accepting uploads.
 
 ### Add a project
 

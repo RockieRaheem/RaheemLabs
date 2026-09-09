@@ -1,0 +1,5 @@
+import { NextResponse } from "next/server";
+import { galleryAdminConfigured, galleryCookie, gallerySessionToken, isGalleryAdmin, validGalleryPassword } from "@/lib/gallery-auth";
+export async function GET() { return NextResponse.json({ authenticated: await isGalleryAdmin(), configured: galleryAdminConfigured() }); }
+export async function POST(request: Request) { const { password } = await request.json() as { password?: string }; if (!password || !validGalleryPassword(password)) return NextResponse.json({ error: "Incorrect password" }, { status: 401 }); const response = NextResponse.json({ authenticated: true }); response.cookies.set(galleryCookie, gallerySessionToken(), { httpOnly: true, sameSite: "strict", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 2592000 }); return response; }
+export async function DELETE() { const response = NextResponse.json({ authenticated: false }); response.cookies.set(galleryCookie, "", { httpOnly: true, expires: new Date(0), path: "/" }); return response; }
