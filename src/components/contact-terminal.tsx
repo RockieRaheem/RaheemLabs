@@ -30,7 +30,7 @@ export function ContactTerminal() {
     <span>✓</span>
     <p className="eyebrow">Message received</p>
     <h2>Thank you for reaching out.</h2>
-    <p>Your note has been submitted to Kamwanga. Expect a reply at the email address you provided.</p>
+    <p>Your note has been submitted to Raheem. Expect a reply at the email address you provided.</p>
     <button type="button" onClick={() => setStatus("idle")}>Send another message</button>
   </div>;
 
