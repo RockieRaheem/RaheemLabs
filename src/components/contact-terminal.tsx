@@ -6,6 +6,7 @@ const endpoint = "/api/contact";
 
 export function ContactTerminal() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [reference, setReference] = useState("");
 
   useEffect(() => {
     if (status !== "sent") return;
@@ -23,9 +24,10 @@ export function ContactTerminal() {
         headers: { Accept: "application/json", "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
-      const result = await response.json() as { success?: boolean | string };
+      const result = await response.json() as { success?: boolean | string; reference?: string };
       if (!response.ok || (result.success !== true && result.success !== "true")) throw new Error("Submission failed");
       form.reset();
+      setReference(result.reference ?? "");
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -37,11 +39,11 @@ export function ContactTerminal() {
     <p className="eyebrow">Message received</p>
     <h2>Thank you for reaching out.</h2>
     <p>Your message has been sent to Raheem.</p>
+    {reference && <small>DELIVERY REFERENCE / {reference}</small>}
     <button type="button" onClick={() => setStatus("idle")}>Send another message</button>
   </div>;
 
   return <form className="contact-form" onSubmit={submit}>
-    <input className="contact-honey" type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className="contact-fields-row">
       <label><span>Your name</span><input name="name" required autoComplete="name" placeholder="How should I address you?" /></label>
       <label><span>Email address</span><input type="email" name="email" required autoComplete="email" placeholder="you@company.com" /></label>

@@ -16,10 +16,8 @@ export async function POST(request: Request) {
     const email = text(payload.email, 254);
     const enquiry = text(payload.enquiry, 80);
     const message = text(payload.message, 5000);
-    const honey = text(payload.website, 200);
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    if (honey) return NextResponse.json({ success: true });
     if (!name || !validEmail || !enquiry || message.length < 20) {
       return NextResponse.json({ success: false, message: "Please complete every field correctly." }, { status: 400 });
     }
@@ -54,6 +52,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: "Gmail did not accept the message." }, { status: 502 });
     }
 
+    console.info("Contact email accepted by Gmail", { reference });
     return NextResponse.json({ success: true, reference });
   } catch (error) {
     console.error("Contact email delivery failed", error instanceof Error ? error.message : "Unknown error");
