@@ -10,7 +10,7 @@ export default function Home() {
       <div className="hero-status eyebrow"><span>UGANDA / EAST AFRICA</span><span>ENGINEER / CREATOR / BOXER</span></div>
       <div className="hero-orbit" aria-hidden="true"><i /><i /><i /><span>RL</span></div>
       <figure className="hero-portrait" aria-label="Portrait of Kamwanga Rahiim">
-        <Image src="/media/Raheem Headshot.jpg" alt="Kamwanga Rahiim" fill priority sizes="(max-width: 760px) 72vw, 38vw" />
+        <Image src="/media/raheem-headshot.jpg" alt="Kamwanga Rahiim" fill priority sizes="(max-width: 760px) 100vw, 52vw" />
         <figcaption><span>PORTRAIT / 001</span><span>KAMPALA, UG</span></figcaption>
       </figure>
       <div className="hero-copy">

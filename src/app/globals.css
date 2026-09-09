@@ -18,6 +18,10 @@ main{min-height:100vh}.page-shell{padding-top:72px}.eyebrow{font:500 .65rem var(
 
 @media(max-width:760px){.hero-portrait{right:-13vw;bottom:0;width:76vw;height:67vh;opacity:.72}.hero-portrait figcaption{display:none}.hero-portrait:after{inset:.65rem}.hero-portrait img{object-position:50% 18%}.home-hero .hero-copy{width:100%;text-shadow:0 3px 24px #000}.home-hero .hero-copy:before{position:absolute;z-index:-1;inset:-2rem -1rem;background:linear-gradient(90deg,rgba(6,8,7,.94),rgba(6,8,7,.38) 72%,transparent);content:""}}
 
+.hero-portrait{right:0;width:min(52vw,52rem);height:100%;border-block:0;border-right:0}.hero-portrait:before{background:linear-gradient(90deg,#101110 0,rgba(16,17,16,.76) 17%,transparent 52%),linear-gradient(0deg,rgba(6,8,7,.76),transparent 42%)}.hero-portrait img{object-position:center 18%;filter:grayscale(.5) contrast(1.08) saturate(.78)}.home-hero .hero-orbit{z-index:2;opacity:.34}
+
+@media(max-width:760px){.hero-portrait{inset:0;width:100%;height:100%;opacity:1;border:0}.hero-portrait:before{background:linear-gradient(90deg,rgba(7,9,8,.76),rgba(7,9,8,.18)),linear-gradient(0deg,rgba(7,9,8,.96) 0,rgba(7,9,8,.58) 48%,rgba(7,9,8,.12) 82%)}.hero-portrait img{object-position:50% 18%;filter:grayscale(.55) contrast(1.08) brightness(.82)}.home-hero .hero-orbit{opacity:.2}}
+
 /* Interaction and atmosphere system translated from the supplied Stitch studies. */
 .shader-backdrop{position:fixed;z-index:-2;inset:0;width:100%;height:100%;opacity:.8}
 .route-enter:after{position:fixed;z-index:105;inset:0;background:var(--green);mix-blend-mode:screen;pointer-events:none;content:"";animation:routeFlash .65s cubic-bezier(.16,1,.3,1) forwards}
