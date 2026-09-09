@@ -9,12 +9,9 @@ export type GalleryEntry = {
 };
 
 const galleryEntries: readonly GalleryEntry[] = [
-  { id: "portrait-001", title: "The person behind the work", caption: "A portrait from the current RaheemLabs identity.", category: "RaheemLabs", image: "/media/raheem-headshot.jpg", alt: "Portrait of Kamwanga Rahiim", format: "portrait" },
-  { id: "sistercare-001", title: "Designing support with care", caption: "A view of the SisterCare support experience.", category: "Building", image: "/media/sistercare-supported.png", alt: "SisterCare support interface", format: "landscape" },
-  { id: "boxing-001", title: "Work beyond the screen", caption: "Training is part of the discipline behind how I learn and build.", category: "Life", image: "/media/my boxing image.PNG", alt: "Raheem during boxing training", format: "portrait" },
-  { id: "rentihub-001", title: "Making operations visible", caption: "The RentiHub dashboard brings property activity into one view.", category: "Building", image: "/media/rentihub-dashboard.png", alt: "RentiHub property-management dashboard", format: "landscape" },
-  { id: "lab-001", title: "Ideas in motion", caption: "A visual from the technology and storytelling world of RaheemLabs.", category: "RaheemLabs", image: "/media/technology-lab.png", alt: "Technology workspace representing RaheemLabs", format: "square" },
-  { id: "boxing-002", title: "The tools of practice", caption: "A still-life study of the equipment behind the routine.", category: "Life", image: "/media/boxing-still-life.png", alt: "Boxing gloves and training equipment", format: "landscape" },
+  { id: "motion-001", title: "Between rounds", caption: "A visual study of motion, focus, and the atmosphere around training.", category: "Life", image: "/media/boxing-hero.png", alt: "Atmospheric boxing training scene", format: "square" },
+  { id: "practice-001", title: "The tools of practice", caption: "A still-life study of the equipment behind the routine.", category: "Life", image: "/media/boxing-still-life.png", alt: "Boxing gloves and training equipment", format: "landscape" },
+  { id: "systems-001", title: "Systems as living structures", caption: "A visual study of technology, connection, and organic growth.", category: "Building", image: "/media/organic-systems.png", alt: "Abstract organic technology system", format: "portrait" },
 ];
 
 export function getGalleryEntries(): readonly GalleryEntry[] { return galleryEntries; }

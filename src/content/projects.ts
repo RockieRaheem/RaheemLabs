@@ -7,7 +7,7 @@ const projects = [
     status: "published", year: "2026", disciplines: ["Digital health", "Responsible AI", "Safety engineering"],
     technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Groq", "Gemini", "Sunbird", "Daily", "Vitest"],
     role: "Builder and repository maintainer", tone: "green", featured: true, order: 1,
-    cover: "/media/sistercare-supported.png", gallery: ["/media/sistercare-supported.png", "/media/sistercare-private.png"],
+    cover: "/media/sistercare-supported.png", gallery: ["/media/sistercare-private.png"],
     teamNote: "The public repository is the source for the product and technical details shown here. SisterCare is preparing for a small, supervised, adult-only pilot; it is not an emergency service, diagnostic system, or unrestricted clinical product.",
     sections: [
       { id: "problem", label: "The problem", title: "The first step toward support should not require a perfect explanation.", paragraphs: ["SisterCare responds to the shame, stigma, limited privacy, and fear of judgment that can prevent girls and women from asking about menstruation, emotional distress, relationships, harassment, loss, and other sensitive experiences.", "The product begins with a private conversation rather than a long health profile, then helps a member understand an appropriate next step without presenting AI as clinical care."] },
@@ -25,7 +25,7 @@ const projects = [
     status: "published", year: "2026", disciplines: ["Property technology", "Financial operations", "Data integrity"],
     technologies: ["React 18", "Vite 5", "Tailwind CSS", "Supabase", "Postgres", "Stellar SDK"],
     role: "Builder and repository maintainer", tone: "copper", featured: true, order: 2,
-    cover: "/media/rentihub-dashboard.png", gallery: ["/media/rentihub-dashboard.png", "/media/rentihub-payments.png"],
+    cover: "/media/rentihub-dashboard.png", gallery: ["/media/rentihub-payments.png"],
     teamNote: "Descriptions are based on the current repository implementation and migrations. Figures visible in interface mockups are demonstration data and are not presented here as real adoption or financial results.",
     sections: [
       { id: "problem", label: "The problem", title: "Property records should not disappear into notebooks and message threads.", paragraphs: ["RentiHub is built in Kampala for commercial property managers who need one place to understand units, tenant assignments, payments, balances, and maintenance instead of reconstructing operations from spreadsheets, exercise books, and WhatsApp messages.", "The product models buildings, floors, units, tenants, leases, payments, maintenance requests, billing periods, and audit activity as connected operational records."] },
