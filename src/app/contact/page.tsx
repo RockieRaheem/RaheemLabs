@@ -21,8 +21,7 @@ export default function Contact() {
         <div className="contact-panel-head"><span>WRITE TO RAHEEM</span><span>01 / SECURE CHANNEL</span></div>
         <div className="contact-form-intro"><h2>Tell me what<br />you&apos;re building.</h2><p>Share enough context for a thoughtful reply. Your message is delivered directly to my inbox.</p></div>
         <ContactTerminal />
-        <aside className="contact-socials" aria-labelledby="contact-socials-title">
-          <div><p className="eyebrow">Prefer another channel?</p><h2 id="contact-socials-title">Find me online.</h2></div>
+        <div className="contact-socials" aria-label="Social and direct contact links">
           <div className="social-dock">{profile.links.map((link, index) => <a
             href={link.href}
             target={link.href.startsWith("http") ? "_blank" : undefined}
@@ -32,7 +31,7 @@ export default function Contact() {
             aria-label={`${link.label}: ${link.handle}`}
             title={`${link.label} — ${link.handle}`}
           ><SocialIcon name={link.label} /><span>{link.label}</span></a>)}</div>
-        </aside>
+        </div>
       </div>
     </section>
   </main>;
