@@ -26,7 +26,7 @@ export default function Home() {
     <section className="manifest section" data-reveal>
       <p className="eyebrow">01 / Operating principle</p>
       <h2 className="section-title">Technology should feel<br />precise. <em>Human.</em> Useful.</h2>
-      <div className="manifest-grid"><p className="copy">I am a Ugandan software-engineering student exploring thoughtful digital products, developer communities, and technology storytelling. The ring keeps the process honest: repetition, composure, and progress earned one round at a time.</p><div className="manifest-stat"><span>BUILD</span><span>SHARE</span><span>TRAIN</span></div></div>
+      <div className="manifest-grid"><div className="manifest-story"><p className="copy">I am a Ugandan software-engineering student exploring thoughtful digital products, developer communities, and technology storytelling. The ring keeps the process honest: repetition, composure, and progress earned one round at a time.</p><Link className="journey-link" href="/journey">Follow the journey <span aria-hidden="true">↗</span></Link></div><div className="manifest-stat"><span>BUILD</span><span>SHARE</span><span>TRAIN</span></div></div>
     </section>
 
     <section className="work-section section" id="work">
