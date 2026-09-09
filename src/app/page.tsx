@@ -39,7 +39,7 @@ export default function Home() {
     </section>
 
     <section className="dual-life section">
-      <div data-reveal><p className="eyebrow">03 / The discipline</p><h2 className="section-title">The code and<br />the <em>corner.</em></h2><p className="copy">Engineering and boxing reward the same qualities: read the situation, control the rhythm, execute with intent, then study what happened.</p><Link className="button" href="/boxing">Enter the ring ↗</Link></div>
+      <div data-reveal><p className="eyebrow">03 / Beyond the build</p><h2 className="section-title">Work needs<br />a life <em>around it.</em></h2><p className="copy">Boxing, soccer, stories, music, ideas, and laughter keep curiosity alive away from the screen.</p><Link className="button" href="/hobbies">Explore my hobbies ↗</Link></div>
       <div className="ring-frame" data-reveal><Image src="/media/boxing-ring.png" alt="Low-angle geometry of a boxing ring" fill sizes="(max-width: 760px) 100vw, 44vw" /><span>DISCIPLINE // 04:30 EAT</span></div>
     </section>
 
