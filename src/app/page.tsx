@@ -17,7 +17,7 @@ export default function Home() {
         <p className="eyebrow" data-glitch>Kamwanga Rahiim / System online</p>
         <h1 className="display"><span>Build technology</span><br />for <em>problems worth</em><br /><span className="outline">solving.</span></h1>
         <p>I engineer useful products, document what I learn through RaheemLabs, and train with the discipline of a boxer.</p>
-        <div className="hero-actions"><Link className="button" data-magnetic href="/work">Explore the work <span>↗</span></Link><Link className="button button--ghost" data-magnetic href="/ethos">Read my ethos</Link></div>
+        <div className="hero-actions"><Link className="button" data-magnetic href="/work">Explore the work <span>↗</span></Link><Link className="button button--ghost" data-magnetic href="/about">About me</Link></div>
       </div>
       <div className="hero-index"><b>01</b><span>PERSONAL OPERATING SYSTEM</span></div>
       <a className="scroll-cue" href="#work" data-glitch>SCROLL TO EXPLORE ↓</a>
