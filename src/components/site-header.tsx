@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
+  ["Homepage", "/"],
   ["Work", "/work"],
   ["About", "/about"],
   ["Hobbies", "/hobbies"],
@@ -31,7 +32,7 @@ export function SiteHeader() {
     <header className="site-header">
       <Link className="wordmark" href="/" onClick={() => setOpen(false)} aria-label="RaheemLabs home"><span>R</span>RAHEEM_LABS</Link>
       <nav className={open ? "nav is-open" : "nav"} aria-label="Primary navigation">
-        {links.map(([label, href]) => <Link className={pathname.startsWith(href) ? "active" : ""} href={href} key={href} onClick={() => setOpen(false)}>{label}</Link>)}
+        {links.map(([label, href]) => <Link className={`${href === "/" ? "nav-home" : ""} ${pathname === href || (href !== "/" && pathname.startsWith(href)) ? "active" : ""}`.trim()} href={href} key={href} onClick={() => setOpen(false)}>{label}</Link>)}
         <Link className="nav-contact" href="/contact" data-magnetic onClick={() => setOpen(false)}>Connect ↗</Link>
       </nav>
       <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} aria-pressed={theme === "light"}>
