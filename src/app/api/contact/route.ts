@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
-const recipient = "kamwangaraheem2050@gmail.com";
-const deliveryEndpoint = `https://formsubmit.co/ajax/${recipient}`;
+const deliveryEndpoint = "https://formsubmit.co/ajax/8d167bf99c79f531416185ea33c49f59";
 
 function text(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -23,22 +22,23 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: "Please complete every field correctly." }, { status: 400 });
     }
 
+    const formBody = new URLSearchParams({
+      name,
+      email,
+      enquiry,
+      message,
+      _subject: `RaheemLabs enquiry: ${enquiry}`,
+      _template: "table",
+    });
     const response = await fetch(deliveryEndpoint, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         Origin: origin,
         Referer: `${origin}/contact`,
       },
-      body: JSON.stringify({
-        name,
-        email,
-        enquiry,
-        message,
-        _subject: `RaheemLabs enquiry: ${enquiry}`,
-        _template: "table",
-      }),
+      body: formBody,
       signal: AbortSignal.timeout(12_000),
       cache: "no-store",
     });
