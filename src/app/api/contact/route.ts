@@ -9,6 +9,7 @@ function text(value: unknown, maxLength: number) {
 
 export async function POST(request: Request) {
   try {
+    const origin = new URL(request.url).origin;
     const payload = await request.json() as Record<string, unknown>;
     const name = text(payload.name, 100);
     const email = text(payload.email, 254);
@@ -24,7 +25,12 @@ export async function POST(request: Request) {
 
     const response = await fetch(deliveryEndpoint, {
       method: "POST",
-      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Origin: origin,
+        Referer: `${origin}/contact`,
+      },
       body: JSON.stringify({
         name,
         email,
@@ -39,7 +45,10 @@ export async function POST(request: Request) {
 
     const result = await response.json().catch(() => null) as { success?: boolean | string } | null;
     const delivered = response.ok && (result?.success === true || result?.success === "true");
-    if (!delivered) return NextResponse.json({ success: false, message: "Email delivery is temporarily unavailable." }, { status: 502 });
+    if (!delivered) {
+      console.error("Contact delivery rejected", response.status, result);
+      return NextResponse.json({ success: false, message: "Email delivery is temporarily unavailable." }, { status: 502 });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
