@@ -3,17 +3,19 @@ export const profile = {
   brand: "RaheemLabs",
   location: "Uganda",
   role: "Software engineer and technology creator",
-  statement:
-    "I build useful technology, share what I learn, and box to remember that progress is earned.",
-  shortBio:
-    "A Ugandan software-engineering student exploring thoughtful digital products, developer communities, and technology storytelling through RaheemLabs.",
-  availability:
-    "Open to thoughtful collaborations, technology conversations, and community opportunities.",
+  statement: "I build useful technology, share what I learn, and box to remember that progress is earned.",
+  shortBio: "A Ugandan software-engineering student exploring thoughtful digital products, developer communities, and technology storytelling through RaheemLabs.",
+  availability: "Open to thoughtful collaborations, technology conversations, and community opportunities.",
+  email: "kamwangaraheem2050@gmail.com",
   links: [
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/kamwanga-raheem-b1b055271",
-    },
+    { label: "LinkedIn", handle: "Kamwanga Rahiim", href: "https://www.linkedin.com/in/kamwanga-rahiim-b1b055271", category: "Professional network" },
+    { label: "GitHub", handle: "RockieRaheem", href: "https://github.com/RockieRaheem", category: "Code and projects" },
+    { label: "Email", handle: "kamwangaraheem2050@gmail.com", href: "mailto:kamwangaraheem2050@gmail.com", category: "Project enquiries" },
+    { label: "WhatsApp", handle: "+256 704 057 370", href: "https://wa.me/256704057370", category: "Direct message" },
+    { label: "Telegram", handle: "@RaheemLabs", href: "https://t.me/RaheemLabs", category: "Direct message" },
+    { label: "Call", handle: "+256 704 057 370", href: "tel:+256704057370", category: "Phone" },
+    { label: "X", handle: "@kamwanga_rahiim", href: "https://x.com/kamwanga_rahiim", category: "Updates" },
+    { label: "TikTok", handle: "@raheemlabs", href: "https://www.tiktok.com/@raheemlabs", category: "Tech and boxing" },
+    { label: "Discord", handle: "raheemlabs", href: "https://discord.com/users/1479454543090684076", category: "Community" },
   ],
 } as const;
-
