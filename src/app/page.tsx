@@ -43,6 +43,6 @@ export default function Home() {
       <div className="ring-frame" data-reveal><Image src="/media/boxing-ring.png" alt="Low-angle geometry of a boxing ring" fill sizes="(max-width: 760px) 100vw, 44vw" /><span>DISCIPLINE // 04:30 EAT</span></div>
     </section>
 
-    <section className="skills section" data-reveal><p className="eyebrow">04 / Technical constellation</p><h2 className="section-title">Connected by curiosity.</h2><p className="copy">A living map of the technologies and practices I continue to explore—not a scoreboard, but a record of direction.</p><div className="constellation-wrap"><Constellation /><span className="skill s1">PRODUCT THINKING</span><span className="skill s2">NEXT.JS</span><span className="skill s3">AI SYSTEMS</span><span className="skill s4">STORYTELLING</span><span className="skill s5">COMMUNITY</span></div></section>
+    <section className="skills section" data-reveal><p className="eyebrow">04 / Technical constellation</p><h2 className="section-title">Connected by curiosity.</h2><p className="copy">A living map of the technologies and practices I continue to explore—not a scoreboard, but a record of direction.</p><div className="constellation-wrap"><Constellation /></div></section>
   </main>;
 }
