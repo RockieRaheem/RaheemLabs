@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{__html:`try{const saved=localStorage.getItem("raheemlabs-theme");const preferred=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=saved||preferred}catch{document.documentElement.dataset.theme="dark"}`}} /></head>
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
         <Experience />
