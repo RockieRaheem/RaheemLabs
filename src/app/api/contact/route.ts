@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
-
-const deliveryEndpoint = "https://formsubmit.co/ajax/8d167bf99c79f531416185ea33c49f59";
+import nodemailer from "nodemailer";
 
 function text(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
+function escapeHtml(value: string) {
+  return value.replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]!);
+}
+
 export async function POST(request: Request) {
   try {
-    const origin = new URL(request.url).origin;
     const payload = await request.json() as Record<string, unknown>;
     const name = text(payload.name, 100);
     const email = text(payload.email, 254);
@@ -22,39 +24,32 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: "Please complete every field correctly." }, { status: 400 });
     }
 
-    const formBody = new URLSearchParams({
-      name,
-      email,
-      enquiry,
-      message,
-      _subject: `RaheemLabs enquiry: ${enquiry}`,
-      _template: "table",
-    });
-    const response = await fetch(deliveryEndpoint, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        Origin: origin,
-        Referer: `${origin}/contact`,
-      },
-      body: formBody,
-      signal: AbortSignal.timeout(12_000),
-      cache: "no-store",
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPassword = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, "");
+    if (!gmailUser || !gmailPassword) {
+      console.error("Contact delivery is missing Gmail credentials");
+      return NextResponse.json({ success: false, message: "Email delivery is not configured." }, { status: 503 });
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: gmailUser, pass: gmailPassword },
     });
 
-    const result = await response.json().catch(() => null) as { success?: boolean | string } | null;
-    const delivered = response.ok && (result?.success === true || result?.success === "true");
-    if (!delivered) {
-      console.error("Contact delivery rejected", response.status, result);
-      return NextResponse.json({ success: false, message: "Email delivery is temporarily unavailable." }, { status: 502 });
-    }
+    await transporter.sendMail({
+      from: `"RaheemLabs Portfolio" <${gmailUser}>`,
+      to: gmailUser,
+      replyTo: email,
+      subject: `RaheemLabs enquiry: ${enquiry}`,
+      text: `Name: ${name}\nEmail: ${email}\nEnquiry: ${enquiry}\n\n${message}`,
+      html: `<h2>New RaheemLabs portfolio enquiry</h2><p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p><strong>Enquiry:</strong> ${escapeHtml(enquiry)}</p><hr><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    const timedOut = error instanceof Error && error.name === "TimeoutError";
+    console.error("Contact email delivery failed", error instanceof Error ? error.message : "Unknown error");
     return NextResponse.json(
-      { success: false, message: timedOut ? "Email delivery timed out. Please try again." : "The message could not be delivered." },
+      { success: false, message: "The message could not be delivered." },
       { status: 502 },
     );
   }
