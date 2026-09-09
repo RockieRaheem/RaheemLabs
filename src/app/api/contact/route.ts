@@ -30,6 +30,8 @@ export async function POST(request: Request) {
       console.error("Contact delivery is missing Gmail credentials");
       return NextResponse.json({ success: false, message: "Email delivery is not configured." }, { status: 503 });
     }
+    const [mailbox, domain] = gmailUser.split("@");
+    const inboxAddress = process.env.CONTACT_RECIPIENT || `${mailbox}+portfolio@${domain}`;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -39,14 +41,14 @@ export async function POST(request: Request) {
     const reference = crypto.randomUUID().slice(0, 8).toUpperCase();
     const delivery = await transporter.sendMail({
       from: `"RaheemLabs Portfolio" <${gmailUser}>`,
-      to: gmailUser,
+      to: inboxAddress,
       replyTo: email,
       subject: `RaheemLabs enquiry [${reference}]: ${enquiry}`,
       text: `Reference: ${reference}\nName: ${name}\nEmail: ${email}\nEnquiry: ${enquiry}\n\n${message}`,
       html: `<h2>New RaheemLabs portfolio enquiry</h2><p><strong>Reference:</strong> ${reference}</p><p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p><strong>Enquiry:</strong> ${escapeHtml(enquiry)}</p><hr><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
     });
 
-    const accepted = delivery.accepted.map(String).some((address) => address.toLowerCase() === gmailUser.toLowerCase());
+    const accepted = delivery.accepted.map(String).some((address) => address.toLowerCase() === inboxAddress.toLowerCase());
     if (!accepted || delivery.rejected.length > 0) {
       console.error("Contact email was not accepted by Gmail", { accepted: delivery.accepted, rejected: delivery.rejected });
       return NextResponse.json({ success: false, message: "Gmail did not accept the message." }, { status: 502 });

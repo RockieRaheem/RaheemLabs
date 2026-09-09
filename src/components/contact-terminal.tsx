@@ -9,7 +9,7 @@ export function ContactTerminal() {
 
   useEffect(() => {
     if (status !== "sent") return;
-    const resetTimer = window.setTimeout(() => setStatus("idle"), 6000);
+    const resetTimer = window.setTimeout(() => setStatus("idle"), 3000);
     return () => window.clearTimeout(resetTimer);
   }, [status]);
 
@@ -36,7 +36,7 @@ export function ContactTerminal() {
     <span>✓</span>
     <p className="eyebrow">Message received</p>
     <h2>Thank you for reaching out.</h2>
-    <p>Your note has been sent to Raheem. This confirmation will close automatically.</p>
+    <p>Your message has been sent to Raheem.</p>
     <button type="button" onClick={() => setStatus("idle")}>Send another message</button>
   </div>;
 
