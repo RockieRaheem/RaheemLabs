@@ -9,6 +9,10 @@ export default function Home() {
     <section className="home-hero">
       <div className="hero-status eyebrow"><span>UGANDA / EAST AFRICA</span><span>ENGINEER / CREATOR / BOXER</span></div>
       <div className="hero-orbit" aria-hidden="true"><i /><i /><i /><span>RL</span></div>
+      <figure className="hero-portrait" aria-label="Portrait of Kamwanga Rahiim">
+        <Image src="/media/Raheem Headshot.jpg" alt="Kamwanga Rahiim" fill priority sizes="(max-width: 760px) 72vw, 38vw" />
+        <figcaption><span>PORTRAIT / 001</span><span>KAMPALA, UG</span></figcaption>
+      </figure>
       <div className="hero-copy">
         <p className="eyebrow" data-glitch>Kamwanga Rahiim / System online</p>
         <h1 className="display"><span>Build technology</span><br />for <em>problems worth</em><br /><span className="outline">solving.</span></h1>
