@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 
-const endpoint = "https://formsubmit.co/ajax/kamwangaraheem2050@gmail.com";
+const endpoint = "/api/contact";
 
 export function ContactTerminal() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -14,8 +14,8 @@ export function ContactTerminal() {
     try {
       const response = await fetch(endpoint, {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
       const result = await response.json() as { success?: boolean | string };
       if (!response.ok || (result.success !== true && result.success !== "true")) throw new Error("Submission failed");
@@ -34,10 +34,8 @@ export function ContactTerminal() {
     <button type="button" onClick={() => setStatus("idle")}>Send another message</button>
   </div>;
 
-  return <form className="contact-form" action={endpoint} method="POST" onSubmit={submit}>
-    <input type="hidden" name="_subject" value="New RaheemLabs portfolio enquiry" />
-    <input type="hidden" name="_template" value="table" />
-    <input className="contact-honey" type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+  return <form className="contact-form" onSubmit={submit}>
+    <input className="contact-honey" type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className="contact-fields-row">
       <label><span>Your name</span><input name="name" required autoComplete="name" placeholder="How should I address you?" /></label>
       <label><span>Email address</span><input type="email" name="email" required autoComplete="email" placeholder="you@company.com" /></label>
