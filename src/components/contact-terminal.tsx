@@ -1,11 +1,17 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const endpoint = "/api/contact";
 
 export function ContactTerminal() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  useEffect(() => {
+    if (status !== "sent") return;
+    const resetTimer = window.setTimeout(() => setStatus("idle"), 6000);
+    return () => window.clearTimeout(resetTimer);
+  }, [status]);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,11 +32,11 @@ export function ContactTerminal() {
     }
   };
 
-  if (status === "sent") return <div className="contact-success" role="status">
+  if (status === "sent") return <div className="contact-success" role="status" aria-live="polite">
     <span>✓</span>
     <p className="eyebrow">Message received</p>
     <h2>Thank you for reaching out.</h2>
-    <p>Your note has been submitted to Raheem. Expect a reply at the email address you provided.</p>
+    <p>Your note has been sent to Raheem. This confirmation will close automatically.</p>
     <button type="button" onClick={() => setStatus("idle")}>Send another message</button>
   </div>;
 

@@ -36,16 +36,23 @@ export async function POST(request: Request) {
       auth: { user: gmailUser, pass: gmailPassword },
     });
 
-    await transporter.sendMail({
+    const reference = crypto.randomUUID().slice(0, 8).toUpperCase();
+    const delivery = await transporter.sendMail({
       from: `"RaheemLabs Portfolio" <${gmailUser}>`,
       to: gmailUser,
       replyTo: email,
-      subject: `RaheemLabs enquiry: ${enquiry}`,
-      text: `Name: ${name}\nEmail: ${email}\nEnquiry: ${enquiry}\n\n${message}`,
-      html: `<h2>New RaheemLabs portfolio enquiry</h2><p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p><strong>Enquiry:</strong> ${escapeHtml(enquiry)}</p><hr><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+      subject: `RaheemLabs enquiry [${reference}]: ${enquiry}`,
+      text: `Reference: ${reference}\nName: ${name}\nEmail: ${email}\nEnquiry: ${enquiry}\n\n${message}`,
+      html: `<h2>New RaheemLabs portfolio enquiry</h2><p><strong>Reference:</strong> ${reference}</p><p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p><strong>Enquiry:</strong> ${escapeHtml(enquiry)}</p><hr><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
     });
 
-    return NextResponse.json({ success: true });
+    const accepted = delivery.accepted.map(String).some((address) => address.toLowerCase() === gmailUser.toLowerCase());
+    if (!accepted || delivery.rejected.length > 0) {
+      console.error("Contact email was not accepted by Gmail", { accepted: delivery.accepted, rejected: delivery.rejected });
+      return NextResponse.json({ success: false, message: "Gmail did not accept the message." }, { status: 502 });
+    }
+
+    return NextResponse.json({ success: true, reference });
   } catch (error) {
     console.error("Contact email delivery failed", error instanceof Error ? error.message : "Unknown error");
     return NextResponse.json(
