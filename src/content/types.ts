@@ -50,7 +50,6 @@ export type JournalType =
   | "article"
   | "podcast"
   | "video"
-  | "boxing-note"
   | "event";
 
 export type JournalEntry = {

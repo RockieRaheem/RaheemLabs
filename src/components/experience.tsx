@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export function Experience() {
   const cursor = useRef<HTMLDivElement>(null);
-  const [sound, setSound] = useState(false);
-  const audio = useRef<AudioContext | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -35,19 +33,5 @@ export function Experience() {
     return () => { removeEventListener("pointermove", update); removeEventListener("scroll", scroll); observer.disconnect();magnetic.forEach(element=>{element.removeEventListener("pointerenter",enter);element.removeEventListener("pointerleave",leave);element.removeEventListener("pointermove",magnet)});clearInterval(glitchTimer);clearTimeout(routeTimer); };
   }, [pathname]);
 
-  const toggleSound = () => {
-    if (sound) { audio.current?.close(); audio.current = null; setSound(false); return; }
-    const Context = window.AudioContext || window.webkitAudioContext;
-    const context = new Context();
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = "sine"; oscillator.frequency.value = 52;
-    gain.gain.value = 0.018;
-    oscillator.connect(gain).connect(context.destination); oscillator.start();
-    audio.current = context; setSound(true);
-  };
-
-  return <><div className="scroll-progress" /><div className="cursor" ref={cursor} aria-hidden="true" /><div className="grain" aria-hidden="true" /><button className="sound" onClick={toggleSound} type="button" aria-pressed={sound}><i>{sound ? "▥" : "▤"}</i> Sound {sound ? "on" : "off"}</button></>;
+  return <><div className="scroll-progress" /><div className="cursor" ref={cursor} aria-hidden="true" /><div className="grain" aria-hidden="true" /></>;
 }
-
-declare global { interface Window { webkitAudioContext: typeof AudioContext } }

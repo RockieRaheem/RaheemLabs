@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: { default: "Kamwanga Rahiim — RaheemLabs", template: "%s — RaheemLabs" },
-  description: "Ugandan software engineer, technology creator, and boxer building useful systems and sharing the process.",
+  description: "Ugandan software engineer and technology creator building useful systems and sharing the process.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
