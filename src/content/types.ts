@@ -45,20 +45,3 @@ export type Project = {
     description: string;
   };
 };
-
-export type JournalType =
-  | "article"
-  | "podcast"
-  | "video"
-  | "event";
-
-export type JournalEntry = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  type: JournalType;
-  status: ContentStatus;
-  publishedAt: string;
-  topics: readonly string[];
-  externalUrl?: string;
-};
