@@ -1,91 +1,19 @@
-export const galleryKinds = ["Event", "Talk", "Building", "Life", "RaheemLabs"] as const;
-
+export const galleryKinds = ["Speaking", "Stellar", "Leadership", "Impact", "Community", "Milestone"] as const;
 export type GalleryKind = (typeof galleryKinds)[number];
-
-export type GalleryEntry = {
-  id: string;
-  title: string;
-  caption: string;
-  category: GalleryKind;
-  image: string;
-  alt: string;
-  date: string;
-  location?: string;
-  sourceUrl?: string;
-  format: "portrait" | "landscape" | "square";
-};
+export type GalleryEntry = { id: string; title: string; caption: string; category: GalleryKind; image: string; alt: string; date: string; location?: string; sourceUrl?: string; format: "portrait" | "landscape" | "square"; };
 
 export const seedGalleryEntries: readonly GalleryEntry[] = [
-  {
-    id: "linkedin-github-dev-days-masaka-2026",
-    title: "Taking the stage at GitHub Dev Days Masaka",
-    caption: "I travelled to Masaka with the UTAMU Innovation Club team and delivered a talk at GitHub Dev Days 2026—a day centred on software engineering, open source, and building with GitHub.",
-    category: "Talk",
-    image: "/media/linkedin-github-dev-days-masaka.jpg",
-    alt: "GitHub Dev Days 2026 Masaka speaker card for Kamwanga Raheem",
-    date: "2026-09-04",
-    location: "Masaka, Uganda",
-    sourceUrl: "https://www.linkedin.com/posts/utamu-innovation-club_the-team-gets-to-masaka-tomorrow-proud-activity-7501201941708992514-oDxt",
-    format: "portrait",
-  },
-  {
-    id: "linkedin-aifest-sistercare-top-ten-2026",
-    title: "SisterCare reached the AI Fest Top 10",
-    caption: "We presented SisterCare at the AI Fest Hackathon and finished among the Top 10 projects. The result strengthened our resolve to keep building private menstrual-health and emotional-wellbeing support for girls and women.",
-    category: "Building",
-    image: "/media/linkedin-aifest-sistercare.jpg",
-    alt: "The SisterCare team presenting on stage at AI Fest 2026",
-    date: "2026-05-09",
-    location: "Kampala, Uganda",
-    sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_womenintech-digitalhealth-techforgood-activity-7458989644991418368--YE0",
-    format: "portrait",
-  },
-  {
-    id: "linkedin-github-dev-days-wakiso-2026",
-    title: "Explaining Copilot Coding Agent in Wakiso",
-    caption: "At GitHub Copilot Dev Days Wakiso, I joined the speaker lineup at UTAMU Kungu Campus to unpack Copilot Coding Agent for students, developers, and technology enthusiasts.",
-    category: "Talk",
-    image: "/media/linkedin-tech-community.jpg",
-    alt: "Kamwanga Rahiim with fellow GitHub Dev Days speakers and technology community members",
-    date: "2026-05-15",
-    location: "UTAMU Kungu Campus, Wakiso",
-    sourceUrl: "https://www.linkedin.com/company/utamu-innovation-club",
-    format: "landscape",
-  },
-  {
-    id: "linkedin-stellar-kabale-bootcamp-2026",
-    title: "Building on Stellar in Kabale",
-    caption: "I represented UTAMU Innovation Club at the Stellar East Africa Kabale Builders Bootcamp, spending three execution-focused days learning through project development, code reviews, and mentorship.",
-    category: "Building",
-    image: "/media/stellar-kabale-bootcamp.png",
-    alt: "Official Stellar East Africa Kabale Builders Bootcamp 2026 event card",
-    date: "2026-03-06",
-    location: "Orchard Motel, Kabale",
-    sourceUrl: "https://luma.com/nxsgz06r",
-    format: "landscape",
-  },
-  {
-    id: "linkedin-ieee-techx-badge-winner-2025",
-    title: "An IEEE TechX Badge Challenge win",
-    caption: "I was proud to be among the winners as IEEE Uganda Section recorded 12 winners and emerged as the leading section globally in the IEEE Computer Society SYP TechX Badge Challenge.",
-    category: "Event",
-    image: "/media/linkedin-ieee-techx.jpg",
-    alt: "IEEE Computer Society SYP TechX Badge Challenge results showing Uganda Section with 12 winners",
-    date: "2025-02-16",
-    location: "Uganda",
-    sourceUrl: "https://www.linkedin.com/posts/ieee-kyambogo-university-student-branch_proudly-celebrating-a-remarkable-achievement-activity-7296801307384803328-xnYi",
-    format: "landscape",
-  },
-  {
-    id: "linkedin-innovation-hub-2025",
-    title: "Learning to build with AI, not against it",
-    caption: "At an Innovation Hub session in Nakawa, my strongest takeaway was that developers should adapt to current tools and use AI to amplify creativity, productivity, and problem-solving.",
-    category: "Event",
-    image: "/media/linkedin-innovation-hub.jpg",
-    alt: "Developers attending a session around a table at the Innovation Hub in Nakawa",
-    date: "2025-10-18",
-    location: "Innovation Hub, Nakawa",
-    sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_innovation-ai-developers-activity-7385394562829008896-vm_d",
-    format: "portrait",
-  },
+  { id: "ieee-micro-mentoring-ambassador-2026", title: "Selected to serve as an IEEE micro-mentoring ambassador", caption: "I joined the IEEE Computer Society SYP Micro Mentoring programme as a Region 8 ambassador. The role is a chance to share opportunities, connect people, and help others move forward through practical mentorship.", category: "Leadership", image: "/media/linkedin-ieee-mentoring.jpg", alt: "IEEE Computer Society announcement introducing Kamwanga Raheem as a Micro Mentoring Ambassador", date: "2026-09-08", location: "IEEE Region 8", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_ieee-ieeecomputersociety-utamu-activity-7503033530676031489-ac_i", format: "portrait" },
+  { id: "github-dev-days-masaka-2026", title: "Taking GitHub Copilot beyond Kampala", caption: "At Masaka Youth Centre, I spoke with high-school and university students about how AI is changing software development, how GitHub Copilot supports the coding process, and why strong fundamentals still matter.", category: "Speaking", image: "/media/linkedin-masaka-copilot.jpg", alt: "Kamwanga Rahiim speaking to students at GitHub Dev Days in Masaka", date: "2026-09-04", location: "Masaka Youth Centre, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_githubcopilot-githubdevdays-utamu-activity-7501726237342670849-M6Qr", format: "portrait" },
+  { id: "stellar-impact-studio-kenya-2026", title: "The people behind the Stellar ecosystem", caption: "My time at Stellar Impact Studio made the ecosystem feel tangible: builders, mentors, and community leaders learning from one another. I returned determined to help more developers in Uganda discover what they can build on Stellar.", category: "Stellar", image: "/media/linkedin-stellar-impact-studio.jpg", alt: "Stellar Impact Studio participants in conversation around a table in Kenya", date: "2026-08-01", location: "Kenya", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_stellar-stellardevelopmentfoundation-buildonstellar-activity-7489228174254465024-2lu4", format: "landscape" },
+  { id: "utamu-community-coding-2026", title: "The conversations that continue after the session", caption: "One of my favourite moments came after the formal programme: laptops open, ideas moving, bugs being solved, and people learning together. Events matter because of the communities and collaborations that remain afterward.", category: "Community", image: "/media/linkedin-utamu-coding.jpg", alt: "Student developers coding together outdoors after a UTAMU community session", date: "2026-07-31", location: "UTAMU, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_utamuinnovationhub-utamu-softwareengineering-activity-7488837277847064576-ohCj", format: "landscape" },
+  { id: "stellar-advocacy-utamu-2026", title: "Opening a door to Stellar for student developers", caption: "At the UTAMU Student Developer Day Hackathon, I introduced developers to the Stellar ecosystem and its opportunities. More than twenty joined the Stellar Uganda community—a reminder that ecosystems grow one conversation at a time.", category: "Stellar", image: "/media/linkedin-stellar-utamu.jpg", alt: "Kamwanga Rahiim introducing Stellar to student developers at UTAMU", date: "2026-07-24", location: "UTAMU, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_stellar-stellardevelopmentfoundation-buildonstellar-activity-7486511394423623680-LPsM", format: "portrait" },
+  { id: "stellar-nairobi-journey-2026", title: "Curiosity carried the journey to Nairobi", caption: "A conversation introduced me to Stellar. Curiosity became learning, building, and community—then a room in Nairobi filled with people creating meaningful impact through technology. Showing up consistently can change the direction of a journey.", category: "Stellar", image: "/media/linkedin-stellar-nairobi.jpg", alt: "Kamwanga Rahiim standing at a Stellar community gathering in Nairobi", date: "2026-07-13", location: "Nairobi, Kenya", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_stellar-blockchain-web3-activity-7482550125714792448-dBO-", format: "portrait" },
+  { id: "ieee-techx-ambassador-2026", title: "Representing the IEEE TechX community", caption: "I began serving as an IEEE CS SYP TechX Ambassador for 2026. The appointment reflects a principle I keep returning to: progress in technology comes from learning, contributing, and showing up consistently.", category: "Leadership", image: "/media/linkedin-techx-ambassador.jpg", alt: "Official IEEE CS SYP TechX Ambassador announcement for Kamwanga Rahiim", date: "2026-06-19", location: "Global", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_techx2026-techxambassador-ieee-activity-7473804120055791616-StPD", format: "portrait" },
+  { id: "github-dev-days-wakiso-2026", title: "Selected to speak about agentic software engineering", caption: "I was selected for GitHub Copilot Dev Days in Wakiso to present “GitHub Copilot Coding Agent and the Future of Agentic Software Engineering”—a conversation about developers collaborating effectively with intelligent systems.", category: "Speaking", image: "/media/linkedin-wakiso-speaker.jpg", alt: "Speaker announcement for Kamwanga Rahiim at GitHub Copilot Dev Days Wakiso", date: "2026-05-12", location: "Wakiso, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_githubcopilot-devdays-softwareengineering-activity-7460056536833454080-_qDw", format: "portrait" },
+  { id: "sistercare-break-the-pattern-2026", title: "Building a safer space for women’s health", caption: "SisterCare is my response to a difficult pattern: girls navigating menstrual health without clear information or support. It brings cycle tracking, learning, and emotional support into one private, approachable space.", category: "Impact", image: "/media/linkedin-sistercare-impact.jpg", alt: "SisterCare presentation about menstrual health, support, and social impact", date: "2026-04-24", location: "Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_breakthepattern-socialimpact-womenintech-activity-7453416676273971200-iLjY", format: "square" },
+  { id: "sistercare-ai-fest-top-ten-2026", title: "SisterCare selected among AI Fest’s Top 10", caption: "SisterCare reached the Top 10 at the AI Fest Hackathon. The recognition validated a clear mission: use technology to give girls and women private access to menstrual-health information, cycle tools, and emotional support.", category: "Milestone", image: "/media/linkedin-aifest-top10.jpg", alt: "AI Fest announcement naming SisterCare among the hackathon Top 10 projects", date: "2026-04-22", location: "Kampala, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_aifest2026-aifestuganda-aifest-activity-7452696871057203200-1ZTy", format: "square" },
+  { id: "foreign-policy-leadership-honours-2026", title: "Graduating with honours in foreign policy and leadership", caption: "I completed the Early Career Foreign Policy Analysis programme with honours. Delivered through the U.S. Embassy in Uganda, CPSS Africa, and the Lincoln Institute, it strengthened how I think about leadership, diplomacy, and global systems.", category: "Leadership", image: "/media/linkedin-foreign-policy.jpg", alt: "Kamwanga Rahiim receiving his Foreign Policy and Leadership Programme certificate", date: "2026-03-29", location: "Kampala, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_americanembassy-leadership-foreignpolicy-activity-7443969289264525312-GCZy", format: "portrait" },
+  { id: "stellar-kabale-bootcamp-2026", title: "Learning architecture before implementation in Kabale", caption: "The Stellar East Africa Bootcamp reinforced that strong software starts before the first line of code—with architecture, component relationships, and scalability. Mentorship and technical review made the learning practical.", category: "Stellar", image: "/media/linkedin-stellar-kabale.jpg", alt: "Developers gathered for the Stellar East Africa builders bootcamp in Kabale", date: "2026-03-08", location: "Kabale, Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_stellareastafrica-stellar-progressochukoeyaadah-activity-7436311693787430912-AoH2", format: "landscape" },
+  { id: "ieee-techx-bits-and-bots-winner-2025", title: "Winning the IEEE TechX Bits & Bots Hackathon", caption: "My teammates and I emerged as winners of the IEEE TechX Bits & Bots Hackathon 2025. It was a lesson in teamwork, creativity, persistence, and building technology around real problems and shared purpose.", category: "Milestone", image: "/media/linkedin-ieee-techx-winner.jpg", alt: "Kamwanga Rahiim and teammates celebrating their IEEE TechX Bits and Bots Hackathon win", date: "2025-09-27", location: "Uganda", sourceUrl: "https://www.linkedin.com/posts/kamwanga-rahiim-b1b055271_ieee-techx2025-innovation-activity-7377791067997253632-MPTQ", format: "landscape" },
 ];
