@@ -38,6 +38,6 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="skills section" data-reveal><p className="eyebrow">03 / Technical constellation</p><h2 className="section-title">Connected by curiosity.</h2><p className="copy">A living map of the technologies and practices I continue to explore—not a scoreboard, but a record of direction.</p><div className="constellation-wrap"><Constellation /></div></section>
+    <section className="skills section" id="capabilities" data-reveal><p className="eyebrow">03 / Capability orbit</p><h2 className="section-title">What I do,<br />always in motion.</h2><p className="copy">A living orbit of how I design, build, analyse, teach, and help people use technology with confidence.</p><div className="constellation-wrap"><Constellation /></div></section>
   </main>;
 }

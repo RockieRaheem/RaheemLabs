@@ -1,47 +1,60 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 
-const clusters = [
-  { id: "frontend", label: "Frontend", skills: ["React", "Next.js", "Vue.js", "Tailwind CSS"] },
-  { id: "backend", label: "Backend", skills: ["Node.js", "Express", "FastAPI", "Django"] },
-  { id: "data", label: "Data systems", skills: ["PostgreSQL", "MySQL", "MongoDB", "Pandas"] },
-  { id: "analytics", label: "Analytics", skills: ["Power BI", "Tableau", "Data analytics"] },
-  { id: "intelligence", label: "AI + ML", skills: ["Python", "TensorFlow", "scikit-learn", "AI systems"] },
-  { id: "infrastructure", label: "Infrastructure", skills: ["Docker", "AWS", "Linux", "Git"] },
-  { id: "practice", label: "Practice", skills: ["Full-stack development", "Product thinking", "Technology storytelling", "Community"] },
+const capabilities = [
+  { name: "Website design", note: "Clear, responsive digital experiences", orbit: "inner", angle: "0deg", duration: "24s" },
+  { name: "System development", note: "Useful products built around real needs", orbit: "inner", angle: "180deg", duration: "24s" },
+  { name: "Data analysis", note: "Information shaped into useful insight", orbit: "middle", angle: "20deg", duration: "34s" },
+  { name: "Software setup", note: "Installation, configuration, and support", orbit: "middle", angle: "140deg", duration: "34s" },
+  { name: "Tech education", note: "Practical ideas made approachable", orbit: "middle", angle: "260deg", duration: "34s" },
+  { name: "AI prototyping", note: "Responsible experiments for real problems", orbit: "outer", angle: "55deg", duration: "46s" },
+  { name: "Product thinking", note: "From early question to usable direction", orbit: "outer", angle: "175deg", duration: "46s" },
+  { name: "Community mentoring", note: "Learning, sharing, and growing together", orbit: "outer", angle: "295deg", duration: "46s" },
 ] as const;
 
 export function Constellation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d");
-    if (!context) return;
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
     let frame = 0;
-    let pointer = { x: -1000, y: -1000 };
-    const nodes = Array.from({ length: 42 }, (_, index) => ({ x: ((index * 37) % 101) / 101, y: ((index * 61 + 17) % 103) / 103, vx: ((index % 5) - 2) * .00012, vy: (((index * 3) % 5) - 2) * .00012, r: index % 8 === 0 ? 3 : 1.5 }));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const stars = Array.from({ length: 54 }, (_, index) => ({ x: ((index * 37) % 101) / 101, y: ((index * 61 + 17) % 103) / 103, phase: index * .7, size: index % 9 === 0 ? 2.4 : 1.1 }));
     const resize = () => { const ratio = Math.min(devicePixelRatio, 2); canvas.width = canvas.clientWidth * ratio; canvas.height = canvas.clientHeight * ratio; context.setTransform(ratio, 0, 0, ratio, 0, 0); };
-    const move = (event: PointerEvent) => { const box = canvas.getBoundingClientRect(); pointer = { x: event.clientX - box.left, y: event.clientY - box.top }; };
-    const draw = () => {
-      const w = canvas.clientWidth, h = canvas.clientHeight;
-      context.clearRect(0, 0, w, h);
-      nodes.forEach((node) => { node.x += node.vx; node.y += node.vy; if (node.x < 0 || node.x > 1) node.vx *= -1; if (node.y < 0 || node.y > 1) node.vy *= -1; const x = node.x * w, y = node.y * h; const dx = x - pointer.x, dy = y - pointer.y, distance = Math.hypot(dx, dy); if (distance < 120) { node.x += (dx / Math.max(distance, 1)) * .002; node.y += (dy / Math.max(distance, 1)) * .002; } });
-      nodes.forEach((a, index) => nodes.slice(index + 1).forEach((b) => { const ax = a.x*w, ay = a.y*h, bx = b.x*w, by = b.y*h, distance = Math.hypot(ax-bx, ay-by); if (distance < 145) { context.strokeStyle = `rgba(78,222,163,${(1-distance/145)*.25})`; context.beginPath(); context.moveTo(ax, ay); context.lineTo(bx, by); context.stroke(); } }));
-      nodes.forEach((node) => { context.fillStyle = "#4edea3"; context.beginPath(); context.arc(node.x*w, node.y*h, node.r, 0, Math.PI*2); context.fill(); });
-      frame = requestAnimationFrame(draw);
+    const draw = (time = 0) => {
+      context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      stars.forEach((star) => {
+        const glow = reducedMotion ? .55 : .35 + Math.sin(time * .0015 + star.phase) * .25;
+        context.fillStyle = `rgba(78,222,163,${glow})`;
+        context.beginPath();
+        context.arc(star.x * canvas.clientWidth, star.y * canvas.clientHeight, star.size, 0, Math.PI * 2);
+        context.fill();
+      });
+      if (!reducedMotion) frame = requestAnimationFrame(draw);
     };
-    resize(); draw(); addEventListener("resize", resize); canvas.addEventListener("pointermove", move);
-    return () => { cancelAnimationFrame(frame); removeEventListener("resize", resize); canvas.removeEventListener("pointermove", move); };
+    resize();
+    draw();
+    window.addEventListener("resize", resize);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("resize", resize); };
   }, []);
 
-  return <div className="constellation-system">
+  return <div className="constellation-system capability-system">
     <canvas className="constellation" ref={canvasRef} aria-hidden="true" />
-    <svg className="constellation-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 50L16 18M50 50L50 13M50 50L84 18M50 50L14 52M50 50L86 52M50 50L20 84M50 50L80 84" /></svg>
-    <div className="constellation-core"><span>CORE</span><strong>Software<br />Engineering</strong><i>UG / 001</i></div>
-    <div className="constellation-clusters">
-      {clusters.map((cluster, index) => <article className={`skill-cluster skill-cluster--${index + 1}`} key={cluster.id}><span>0{index + 1} / {cluster.label}</span><div>{cluster.skills.map((skill) => <b key={skill}>{skill}</b>)}</div></article>)}
+    <div className="orbit-ring orbit-ring--inner" aria-hidden="true" />
+    <div className="orbit-ring orbit-ring--middle" aria-hidden="true" />
+    <div className="orbit-ring orbit-ring--outer" aria-hidden="true" />
+    <div className="constellation-core capability-core"><span>RAHEEMLABS</span><strong>Build<br />Teach<br />Analyse</strong><i>UG / EAST AFRICA</i></div>
+    <div className="capability-planets">
+      {capabilities.map((capability, index) => <article
+        className={`capability-planet capability-planet--${capability.orbit}`}
+        style={{ "--angle": capability.angle, "--duration": capability.duration } as CSSProperties}
+        key={capability.name}
+        tabIndex={0}
+      ><span aria-hidden="true">0{index + 1}</span><strong>{capability.name}</strong><small>{capability.note}</small></article>)}
     </div>
   </div>;
 }
