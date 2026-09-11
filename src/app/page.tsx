@@ -15,7 +15,7 @@ export default function Home() {
       </figure>
       <div className="hero-copy">
         <p className="eyebrow" data-glitch>Kamwanga Rahiim / System online</p>
-        <h1 className="display"><span>Build technology</span><br />for <em>problems worth</em><br /><span className="outline">solving.</span></h1>
+        <h1 className="display"><span>Build <wbr />technology</span><br />for <em>problems worth</em><br /><span className="outline">solving.</span></h1>
         <p>I engineer useful products and document what I learn through RaheemLabs.</p>
         <div className="hero-actions"><Link className="button" data-magnetic href="/work">Explore the work <span>↗</span></Link><Link className="button button--ghost" data-magnetic href="/about">About me</Link></div>
       </div>
