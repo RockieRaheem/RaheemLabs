@@ -2,14 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { galleryKinds, type GalleryEntry, type GalleryKind } from "@/content/gallery";
+import type { GalleryEntry } from "@/content/gallery";
 
 const readableDate = (date: string) => new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
 
 export function GalleryGrid({ entries }: { entries: readonly GalleryEntry[] }) {
-  const [filter, setFilter] = useState<"All" | GalleryKind>("All");
   const [activeId, setActiveId] = useState<string | null>(null);
-  const visible = useMemo(() => [...(filter === "All" ? entries : entries.filter((entry) => entry.category === filter))].sort((a, b) => b.date.localeCompare(a.date)), [entries, filter]);
+  const visible = useMemo(() => [...entries].sort((a, b) => b.date.localeCompare(a.date)), [entries]);
   const activeIndex = visible.findIndex((entry) => entry.id === activeId);
   const active = activeIndex >= 0 ? visible[activeIndex] : null;
 
@@ -26,11 +25,7 @@ export function GalleryGrid({ entries }: { entries: readonly GalleryEntry[] }) {
   }, [active, activeIndex, visible]);
 
   return <>
-    <section className="gallery-toolbar" aria-label="Filter gallery stories">
-      <span>Explore the journal</span>
-      <div>{(["All", ...galleryKinds] as const).map((kind) => <button type="button" className={filter === kind ? "active" : ""} onClick={() => { setFilter(kind); setActiveId(null); }} aria-pressed={filter === kind} key={kind}>{kind}</button>)}</div>
-    </section>
-    <section className="gallery-wall" aria-live="polite">
+    <section className="gallery-wall" aria-label="Gallery stories">
       {visible.map((entry, index) => <article className={`gallery-story gallery-story--${entry.format}`} key={entry.id} data-reveal>
         <button type="button" className="gallery-story__image" onClick={() => setActiveId(entry.id)} aria-label={`Open story: ${entry.title}`}>
           <Image src={entry.image} alt={entry.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1200px) 50vw, 34vw" />
